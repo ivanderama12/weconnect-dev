@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import results from '../../results'
 
+import results from '../../results'
 import { useAuth } from '../../AuthContext'
 import Art from './RegisterPageArt.svg'
-import { updateCurrentUser } from '@firebase/auth'
 
 const Register = () => {
     const [contactPerson, setContactPerson] = useState('')

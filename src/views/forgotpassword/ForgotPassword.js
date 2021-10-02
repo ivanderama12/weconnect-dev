@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router'
 import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -8,22 +7,21 @@ import Art from './ForgotPasswordArt.svg'
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
+    const [success, setSuccess] = useState(false);
 
-    const { login, isAgency } = useAuth()
+    const { isAgency, reset } = useAuth()
 
     async function handleSubmit(e) {
         e.preventDefault();
         setError('');
         setLoading(true);
         try {
-            await login(email, password)
-            isAgency ? history.push('/serviceagency') : history.push('/')
+            await reset(email)
+            setSuccess(true)
         } catch {
-            setError('Failed to log in');
+            setError('Something went wrong');
         }
         setLoading(false)
     }
@@ -35,7 +33,8 @@ const ForgotPassword = () => {
                     <Col>
                         <h3 className='mt-3'>Forgot your password?</h3>
                         <Card style={{ maxWidth: '25rem' }}>
-                            {error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
+                            {!loading && success && !error && <Alert className='mx-3 mt-3 mb-0' variant='success' style={{ fontSize: '14px' }}>Please check your email </Alert>}
+                            {!loading && error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
                             <Card.Body>
                                 <Card.Text>
                                     Enter the email associated with your account and we’ll send you the instructions to reset your password.

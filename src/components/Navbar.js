@@ -18,7 +18,7 @@ const Navbar = () => {
 
     useEffect(() => {
         setIsServiceAgency(isAgency)
-    },[isAgency]);
+    }, [isAgency]);
 
     function handleButtonClick() {
         if (!isServiceAgency) {
@@ -34,7 +34,7 @@ const Navbar = () => {
         <div>
             <NavB bg="light" expand="md">
                 <Container>
-                    <NavB.Brand as={Link} to="/">
+                    <NavB.Brand as={Link} to={isAgency ? "/serviceagency" : "/"}>
                         <img src={logo} alt='weconnect-logo' />
                     </NavB.Brand>
                     <NavB.Toggle aria-controls="basic-navbar-nav" />
