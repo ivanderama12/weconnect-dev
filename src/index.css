@@ -1,0 +1,7 @@
+.bg-red-gradient{
+    background: linear-gradient(91.59deg, rgba(242, 19, 19, 0.8) 48.65%, rgba(244, 67, 54, 0) 149.07%);
+}
+.link-format, .link-format:hover{
+    text-decoration: none;
+    color: #F44336;
+}
