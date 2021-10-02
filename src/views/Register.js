@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import SearchBar from '../components/SearchBar';
 
-import results from '../../results'
-import { useAuth } from '../../AuthContext'
-import Art from './RegisterPageArt.svg'
+import results from '../results'
+import { useAuth } from '../AuthContext'
+import Art from '../images/art/RegisterPageArt.svg'
 
 const Register = () => {
     const [contactPerson, setContactPerson] = useState('')
@@ -71,7 +73,7 @@ const Register = () => {
                 .catch(function (error) {
                     setError('database fail');
                 });
-            
+
         }
     }
 
@@ -79,7 +81,9 @@ const Register = () => {
 
     return (
         <div>
-            <Container className=''>
+            <Navbar />
+            <SearchBar />
+            <Container className='mt-3'>
                 <Row>
                     <Col>
                         <h3>Create Account</h3>
@@ -132,9 +136,9 @@ const Register = () => {
                                             onClick={handleCheck} />
                                         <Form.Label>
                                             <p>By signing up you accept the
-                                                <Link className='link-format' to='/tos'> Terms of Service </Link>
+                                                <Link className='link-format red-font' to='/tos'> Terms of Service </Link>
                                                 and
-                                                <Link className='link-format' to='/privacy'> Privacy Policy </Link>
+                                                <Link className='link-format red-font' to='/privacy'> Privacy Policy </Link>
                                             </p>
                                         </Form.Label>
                                     </Form.Group>

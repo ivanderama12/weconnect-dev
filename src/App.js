@@ -1,13 +1,14 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { AuthProvider } from './AuthContext';
-import Navbar from './components/Navbar'
-import SearchBar from './components/SearchBar';
+// import Navbar from './components/Navbar'
+// import SearchBar from './components/SearchBar';
 
-import Search from './views/search/Search';
-import Login from './views/login/Login';
-import Register from './views/register/Register';
-import ForgotPassword from './views/forgotpassword/ForgotPassword';
+import Search from './views/Search';
+import Login from './views/Login';
+import Register from './views/Register';
+import ForgotPassword from './views/ForgotPassword';
+import Admin from './admin/Admin'
 
 
 
@@ -16,9 +17,9 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <div className="App">
-          <Navbar />
-          <SearchBar />
-          <div className="Content mt-3">
+          {/* <Navbar />
+          <SearchBar /> */}
+          <div>
             <Switch>
               <Route exact path='/' component={Search} />
               <Route path='/login' component={Login} />
@@ -27,6 +28,7 @@ function App() {
               <Route exact path='/serviceagency' component={Search} />
               <Route path='/serviceagency/login' component={Login} />
               <Route path='/serviceagency/register' component={Register} />
+              <Route exact path='/admin' component={Admin} />
             </Switch>
           </div>
         </div>

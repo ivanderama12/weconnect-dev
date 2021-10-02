@@ -1,44 +1,62 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router'
 import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import SearchBar from '../components/SearchBar';
 
-import { useAuth } from '../../AuthContext'
-import Art from './ForgotPasswordArt.svg'
+import results from '../results'
+import { useAuth } from '../AuthContext'
+import Art from '../images/art/LoginPageArt.svg'
 
-const ForgotPassword = () => {
+const Login = () => {
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false)
-    const [success, setSuccess] = useState(false);
+    const history = useHistory()
 
-    const { isAgency, reset } = useAuth()
+    const { login, isAgency } = useAuth()
+    const userType = isAgency ? 'serviceagency' : 'establishment'
+    var userFound = false;
 
     async function handleSubmit(e) {
         e.preventDefault();
         setError('');
         setLoading(true);
-        try {
-            await reset(email)
-            setSuccess(true)
-        } catch {
-            setError('Something went wrong');
+        await results.get('/' + userType + '.json')
+            .then(function (response) {
+                for (let key in response.data) {
+                    if (response.data[key].email === email) {
+                        return userFound = true;
+                    }
+                }
+            })
+
+        if (!userFound) {
+            setError('User not found')
+        } else {
+            try {
+                await login(email, password)
+                isAgency ? history.push('/serviceagency') : history.push('/')
+            } catch {
+                setError('Failed to log in');
+            }
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     return (
         <div>
-            <Container>
+            <Navbar />
+            <SearchBar />
+            <Container className='mt-3'>
                 <Row>
                     <Col>
-                        <h3 className='mt-3'>Forgot your password?</h3>
+                        <h3>Login</h3>
                         <Card style={{ maxWidth: '25rem' }}>
-                            {!loading && success && !error && <Alert className='mx-3 mt-3 mb-0' variant='success' style={{ fontSize: '14px' }}>Please check your email </Alert>}
                             {!loading && error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
                             <Card.Body>
-                                <Card.Text>
-                                    Enter the email associated with your account and we’ll send you the instructions to reset your password.
-                                </Card.Text>
                                 <Form>
                                     <Form.Group className="mb-3" controlId="signInEmail">
                                         <Form.Control
@@ -48,23 +66,25 @@ const ForgotPassword = () => {
                                             onChange={(e) => setEmail(e.target.value)} />
                                     </Form.Group>
 
+                                    <Form.Group className="mb-3" controlId="signInPassword">
+                                        <Form.Control
+                                            required
+                                            type="password"
+                                            placeholder="Password"
+                                            onChange={(e) => setPassword(e.target.value)} />
+                                    </Form.Group>
                                     <div className="d-grid gap-2">
                                         <Button variant="success"
                                             type="submit"
                                             onClick={handleSubmit}>
-                                            Send Instruction
+                                            Login
                                         </Button>
                                     </div>
                                 </Form>
-                                <hr />
-                                <div className='d-flex flex-column justify-content-center'>
-                                    <Card.Text className='text-center'>
-                                        New User?
-                                    </Card.Text>
-                                    <Button as={Link} to={isAgency ? '/serviceagency/register' : '/register'} variant='danger'>
-                                        Register
-                                    </Button>
+                                <div className='mt-2 d-flex justify-content-center'>
+                                    <Link to='/forgotpassword' className='link-format red-font'> Forgot Password? </Link>
                                 </div>
+
                             </Card.Body>
                         </Card>
                     </Col>
@@ -78,4 +98,4 @@ const ForgotPassword = () => {
     )
 }
 
-export default ForgotPassword
+export default Login

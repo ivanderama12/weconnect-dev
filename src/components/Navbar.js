@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Navbar as NavB, Container, Nav, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-import logo from './WeConnect-Logo.svg'
+import logo from '../images/WeConnect-Logo.svg'
 
 import { useAuth } from '../AuthContext'
 
@@ -52,8 +52,6 @@ const Navbar = () => {
                         </Nav>
                     </NavB.Collapse>}
                     {currentUser && <div className="justify-content-end">
-                        {/* {currentUser.token()} */}
-                        {console.log(currentUser)}
                         <Button onClick={handleLogout}>Logout</Button>
                     </div>}
                 </Container>

@@ -3,5 +3,17 @@
 }
 .link-format, .link-format:hover{
     text-decoration: none;
+}
+
+.red-font {
     color: #F44336;
+}
+
+.black-font {
+    color: #000000;
+}
+
+.menu-icon {
+    height: 16px;
+    width: auto;
 }
