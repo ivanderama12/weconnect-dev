@@ -6,7 +6,9 @@ import Search from './views/Search';
 import Login from './views/Login';
 import Register from './views/Register';
 import ForgotPassword from './views/ForgotPassword';
-import Admin from './admin/Admin'
+import Admin from './views/admin/Admin';
+import AdminManageUsers from './views/admin/ManageUsers';
+import AdminManageServices from './views/admin/ManageServices'
 
 function App() {
   return (
@@ -22,7 +24,11 @@ function App() {
               <Route exact path='/serviceagency' component={Search} />
               <Route path='/serviceagency/login' component={Login} />
               <Route path='/serviceagency/register' component={Register} />
+
               <Route exact path='/admin' component={Admin} />
+              <Route path='/admin/users' component={AdminManageUsers} />
+              <Route path='/admin/services' component={AdminManageServices} />
+              
             </Switch>
           </div>
         </div>

@@ -20,11 +20,22 @@
 
 .admin-card {
     width: 652px;
-    height: 304px;
+    height: 324px;
 }
 
 .menu-button {
     background-color: #C4C4C4;
     width: 153px;
     height: 153px;
+}
+
+.edit-button {
+    height: 16px;
+    width: 16px;
+    margin-top: -5px;
+}
+
+.users-card {
+    height: 351px;
+    overflow-y: scroll;
 }

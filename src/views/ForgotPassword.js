@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar/Navbar'
 import SearchBar from '../components/SearchBar';
 
 import { useAuth } from '../AuthContext'

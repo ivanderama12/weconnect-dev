@@ -13,16 +13,11 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true)
     const [isAgency, setIsAgency] = useState(false)
 
-    function signup(email, password, contactPerson) {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(function (result) {
-                return updateProfile(result.user, {
-                    displayName: contactPerson
-                })
-            })
-            .catch(function (error) {
-                console.log(error)
-            });
+    function signup(email, password) {
+        return createUserWithEmailAndPassword(auth, email, password)
+        .then( function(result){
+            signOut(auth)
+        })
     }
 
     function login(email, password) {

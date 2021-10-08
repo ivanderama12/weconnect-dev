@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar/Navbar'
 import SearchBar from '../components/SearchBar';
 
 import results from '../results'
@@ -43,14 +43,12 @@ const Register = () => {
         }
         try {
             setError()
-            await signup(email, password, contactPerson)
-            setLoading(false)
+            await signup(email, password)
         } catch {
+            setLoading(false)
             errorCheck = true;
             setError('Failed to create account');
         }
-        setLoading(false)
-        logout()
         if (!errorCheck) {
             var data = isAgency ? {
                 contactPerson: contactPerson,
@@ -73,11 +71,9 @@ const Register = () => {
                 .catch(function (error) {
                     setError('database fail');
                 });
-
+            setLoading(false)
         }
     }
-
-
 
     return (
         <div>

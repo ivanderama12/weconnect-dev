@@ -1,14 +1,12 @@
 import React from 'react'
 import { Navbar as NavB, Container, Dropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import logo from '../images/WeConnect-Logo.svg'
-import notificon from '../images/icons/NotificationIcon.svg'
-import usericon from '../images/icons/UserIcon.svg'
-import msgicon from '../images/icons/MessageIcon.svg'
-import agreeicon from '../images/icons/AgreementIcon.svg'
-import logouticon from '../images/icons/LogoutIcon.svg'
-
-import { useAuth } from '../AuthContext'
+import logo from '../../images/WeConnect-Logo.svg'
+import notificon from '../../images/icons/NotificationIcon.svg'
+import usericon from '../../images/icons/UserIcon.svg'
+import msgicon from '../../images/icons/MessageIcon.svg'
+import agreeicon from '../../images/icons/AgreementIcon.svg'
+import logouticon from '../../images/icons/LogoutIcon.svg'
 
 const Navbar = () => {
     return (

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Navbar as NavB, Container, Nav, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-import logo from '../images/WeConnect-Logo.svg'
+import logo from '../../images/WeConnect-Logo.svg'
 
-import { useAuth } from '../AuthContext'
+import { useAuth } from '../../AuthContext'
 
 const Navbar = () => {
 
@@ -38,6 +38,7 @@ const Navbar = () => {
                         <img src={logo} alt='weconnect-logo' />
                     </NavB.Brand>
                     <NavB.Toggle aria-controls="basic-navbar-nav" />
+                    
                     {!currentUser && <NavB.Collapse className="justify-content-end" id="basic-navbar-nav">
                         <Nav style={{ gap: '10px' }}>
                             <Nav.Link as={Link} to={isAgency ? '/serviceagency/register' : '/register'}>Register</Nav.Link>
@@ -51,9 +52,11 @@ const Navbar = () => {
                             </Button>
                         </Nav>
                     </NavB.Collapse>}
+
                     {currentUser && <div className="justify-content-end">
                         <Button onClick={handleLogout}>Logout</Button>
                     </div>}
+                    
                 </Container>
             </NavB>
         </div>
