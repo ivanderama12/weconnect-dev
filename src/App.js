@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { AuthProvider } from './AuthContext';
-// import Navbar from './components/Navbar'
-// import SearchBar from './components/SearchBar';
 
 import Search from './views/Search';
 import Login from './views/Login';
@@ -10,15 +8,11 @@ import Register from './views/Register';
 import ForgotPassword from './views/ForgotPassword';
 import Admin from './admin/Admin'
 
-
-
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <div className="App">
-          {/* <Navbar />
-          <SearchBar /> */}
           <div>
             <Switch>
               <Route exact path='/' component={Search} />

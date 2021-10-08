@@ -51,6 +51,7 @@ const Login = () => {
     return (
         <div>
             <Navbar />
+            <h1>asdasd</h1>
             <SearchBar />
             <Container className='mt-3'>
                 <Row>
