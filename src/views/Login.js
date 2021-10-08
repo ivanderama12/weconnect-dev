@@ -24,7 +24,7 @@ const Login = () => {
         e.preventDefault();
         setError('');
         setLoading(true);
-        await results.get('/' + userType + '.json')
+        await results.get('/users/' + userType + '.json')
             .then(function (response) {
                 for (let key in response.data) {
                     if (response.data[key].email === email) {
@@ -34,6 +34,7 @@ const Login = () => {
             })
 
         if (!userFound) {
+            setLoading(false)
             setError('User not found')
         } else {
             try {
@@ -44,6 +45,7 @@ const Login = () => {
             }
             setLoading(false)
         }
+        console.log(userFound)
     }
 
     return (

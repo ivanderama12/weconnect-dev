@@ -17,3 +17,14 @@
     height: 16px;
     width: auto;
 }
+
+.admin-card {
+    width: 652px;
+    height: 304px;
+}
+
+.menu-button {
+    background-color: #C4C4C4;
+    width: 153px;
+    height: 153px;
+}

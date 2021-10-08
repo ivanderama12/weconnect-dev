@@ -43,7 +43,7 @@ const Register = () => {
         }
         try {
             setError()
-            await signup(email, password)
+            await signup(email, password, contactPerson)
             setLoading(false)
         } catch {
             errorCheck = true;
@@ -66,7 +66,7 @@ const Register = () => {
                 userTitle: ''
             }
 
-            results.post('/' + userType + '.json', data)
+            results.post('/users/' + userType + '.json', data)
                 .then(function (response) {
                     setSuccess(true)
                 })
