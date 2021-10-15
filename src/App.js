@@ -2,13 +2,13 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { AuthProvider } from './AuthContext';
 
-import Search from './views/Search';
-import Login from './views/Login';
-import Register from './views/Register';
-import ForgotPassword from './views/ForgotPassword';
-import Admin from './views/admin/Admin';
-import AdminManageUsers from './views/admin/ManageUsers';
-import AdminManageServices from './views/admin/ManageServices'
+import Search from './components/views/Search';
+import Login from './components/views/Login';
+import Register from './components/views/Register';
+import ForgotPassword from './components/views/ForgotPassword';
+import Admin from './components/views/admin/Admin';
+import AdminManageUsers from './components/views/admin/ManageUsers';
+import AdminManageServices from './components/views/admin/ManageServices'
 
 function App() {
   return (

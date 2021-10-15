@@ -32,32 +32,38 @@ const Navbar = () => {
 
     return (
         <div>
-            <NavB bg="light" expand="md">
-                <Container>
-                    <NavB.Brand as={Link} to={isAgency ? "/serviceagency" : "/"}>
-                        <img src={logo} alt='weconnect-logo' />
-                    </NavB.Brand>
-                    <NavB.Toggle aria-controls="basic-navbar-nav" />
-                    
-                    {!currentUser && <NavB.Collapse className="justify-content-end" id="basic-navbar-nav">
-                        <Nav style={{ gap: '10px' }}>
-                            <Nav.Link as={Link} to={isAgency ? '/serviceagency/register' : '/register'}>Register</Nav.Link>
-                            <Nav.Link as={Link} to={isAgency ? '/serviceagency/login' : '/login'}>Login</Nav.Link>
-                            <Button variant='outline-danger'
-                                onClick={handleButtonClick}
-                                style={{
-                                    maxWidth: '180px'
-                                }}>
-                                {isAgency ? 'For Establishments' : 'For Service Agencies'}
-                            </Button>
-                        </Nav>
-                    </NavB.Collapse>}
+            <NavB className="px-3" bg="light" expand="md">
+                <NavB.Brand as={Link} to={isAgency ? "/serviceagency" : "/"}>
+                    <img src={logo} alt='weconnect-logo' />
+                </NavB.Brand>
+                <NavB.Toggle aria-controls="basic-navbar-nav" />
+                {!currentUser && <NavB.Collapse className="justify-content-end" id="basic-navbar-nav">
+                    <Nav style={{ gap: '10px' }}>
+                        <Nav.Link
+                            as={Link}
+                            to={isAgency ? '/serviceagency/register' : '/register'}
+                        >
+                            Register
+                        </Nav.Link>
 
-                    {currentUser && <div className="justify-content-end">
-                        <Button onClick={handleLogout}>Logout</Button>
-                    </div>}
-                    
-                </Container>
+                        <Nav.Link
+                            as={Link}
+                            to={isAgency ? '/serviceagency/login' : '/login'}
+                        >
+                            Login
+                        </Nav.Link>
+                        <Button
+                            variant='outline-danger'
+                            onClick={handleButtonClick}
+                            style={{ width: '180px' }}>
+                            {isAgency ? 'For Establishments' : 'For Service Agencies'}
+                        </Button>
+                    </Nav>
+                </NavB.Collapse>}
+
+                {currentUser && <div className="justify-content-end">
+                    <Button onClick={handleLogout}>Logout</Button>
+                </div>}
             </NavB>
         </div>
     );

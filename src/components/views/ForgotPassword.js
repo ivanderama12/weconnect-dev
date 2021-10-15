@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
+import { Alert, Button, Card, Col, Container, Form, Image, Row, FloatingLabel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/navbar/Navbar'
-import SearchBar from '../components/SearchBar';
+import Navbar from '../navbar/Navbar'
+import SearchBar from '../SearchBar';
 
-import { useAuth } from '../AuthContext'
-import Art from '../images/art/ForgotPasswordArt.svg'
+import { useAuth } from '../../AuthContext'
+import Art from '../../images/art/ForgotPasswordArt.svg'
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -30,8 +30,8 @@ const ForgotPassword = () => {
 
     return (
         <div>
-            <Navbar/>
-            <SearchBar/>
+            <Navbar />
+            <SearchBar />
             <Container className='mt-3'>
                 <Row>
                     <Col>
@@ -41,22 +41,28 @@ const ForgotPassword = () => {
                             {!loading && error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
                             <Card.Body>
                                 <Card.Text>
-                                    Enter the email associated with your account and we’ll send you the instructions to reset your password.
+                                    Enter the email associated with your account and we’ll send you an e-mail to reset your password.
                                 </Card.Text>
                                 <Form>
                                     <Form.Group className="mb-3" controlId="signInEmail">
-                                        <Form.Control
-                                            required
-                                            type="email"
-                                            placeholder="Email"
-                                            onChange={(e) => setEmail(e.target.value)} />
+
+                                        <FloatingLabel
+                                            className="mb-3"
+                                            label="Email Address"
+                                        >
+                                            <Form.Control
+                                                required
+                                                type="email"
+                                                placeholder="Email"
+                                                onChange={(e) => setEmail(e.target.value)} />
+                                        </FloatingLabel>
                                     </Form.Group>
 
                                     <div className="d-grid gap-2">
                                         <Button variant="success"
                                             type="submit"
                                             onClick={handleSubmit}>
-                                            Send Instruction
+                                            Send Password Reset
                                         </Button>
                                     </div>
                                 </Form>

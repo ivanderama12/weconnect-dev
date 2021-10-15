@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Image } from 'react-bootstrap'
-import Navbar from '../components/navbar/Navbar'
-import SearchBar from '../components/SearchBar';
+import Navbar from '../navbar/Navbar'
+import SearchBar from '../SearchBar';
 
-import Art from '../images/art/SearchPageArt.svg'
+import Art from '../../images/art/SearchPageArt.svg'
 
 const Search = () => {
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import manageUserIcon from '../../images/icons/ManageUsersButton.svg'
-import manageServiceIcon from '../../images/icons/ManageServicesButton.svg'
-import Navbar from '../../components/navbar/AdminNavbar'
+import manageUserIcon from '../../../images/icons/ManageUsersButton.svg'
+import manageServiceIcon from '../../../images/icons/ManageServicesButton.svg'
+import Navbar from '../../navbar/AdminNavbar'
 
 const Admin = () => {
     return (

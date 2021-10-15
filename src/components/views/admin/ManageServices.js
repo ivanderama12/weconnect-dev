@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../components/navbar/AdminNavbar'
+import Navbar from '../../navbar/AdminNavbar'
 
 const ManageServices = () => {
     return (
