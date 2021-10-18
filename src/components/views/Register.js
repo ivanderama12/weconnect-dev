@@ -20,7 +20,7 @@ const Register = () => {
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const { signup, isAgency, logout } = useAuth()
+    const { signup, isAgency } = useAuth()
     const userType = isAgency ? 'serviceagency' : 'establishment'
     var errorCheck = false;
 
@@ -163,8 +163,8 @@ const Register = () => {
                                         />
                                         <Form.Label>
                                             <p className='ms-2'>By signing up you accept the
-                                                <Link className='link-format red-font' to='/tos'> Terms of Service </Link>
-                                                <a> and </a>
+                                                <Link className='link-format red-font' to='/tos'> Terms of Service </Link> 
+                                                and
                                                 <Link className='link-format red-font' to='/privacy'> Privacy Policy </Link>
                                             </p>
                                         </Form.Label>

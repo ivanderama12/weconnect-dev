@@ -37,8 +37,9 @@ const Navbar = () => {
                     <img src={logo} alt='weconnect-logo' />
                 </NavB.Brand>
                 <NavB.Toggle aria-controls="basic-navbar-nav" />
-                {!currentUser && <NavB.Collapse className="justify-content-end" id="basic-navbar-nav">
-                    <Nav style={{ gap: '10px' }}>
+
+                <NavB.Collapse className="justify-content-end" id="basic-navbar-nav">
+                    {!currentUser && <Nav style={{ gap: '10px' }}>
                         <Nav.Link
                             as={Link}
                             to={isAgency ? '/serviceagency/register' : '/register'}
@@ -58,12 +59,14 @@ const Navbar = () => {
                             style={{ width: '180px' }}>
                             {isAgency ? 'For Establishments' : 'For Service Agencies'}
                         </Button>
-                    </Nav>
-                </NavB.Collapse>}
+                    </Nav>}
+                    
+                    {currentUser && <Nav className="justify-content-end">
+                        <Button onClick={handleLogout}>Logout</Button>
+                    </Nav>}
+                </NavB.Collapse>
 
-                {currentUser && <div className="justify-content-end">
-                    <Button onClick={handleLogout}>Logout</Button>
-                </div>}
+
             </NavB>
         </div>
     );

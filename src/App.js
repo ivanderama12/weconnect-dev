@@ -9,6 +9,7 @@ import ForgotPassword from './components/views/ForgotPassword';
 import Admin from './components/views/admin/Admin';
 import AdminManageUsers from './components/views/admin/ManageUsers';
 import AdminManageServices from './components/views/admin/ManageServices'
+import SADash from './components/views/serviceagency/Dashboard'
 
 function App() {
   return (
@@ -24,10 +25,12 @@ function App() {
               <Route exact path='/serviceagency' component={Search} />
               <Route path='/serviceagency/login' component={Login} />
               <Route path='/serviceagency/register' component={Register} />
+              <Route path='/serviceagency/dashboard' component={SADash} />
 
               <Route exact path='/admin' component={Admin} />
               <Route path='/admin/users' component={AdminManageUsers} />
               <Route path='/admin/services' component={AdminManageServices} />
+
               
             </Switch>
           </div>

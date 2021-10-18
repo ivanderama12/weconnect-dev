@@ -25,8 +25,14 @@
 
 .menu-button {
     background-color: #C4C4C4;
+    padding-top: $spacer;
     width: 153px;
     height: 153px;
+}
+
+.button-art {
+    height: 85px;
+    width: 85px;
 }
 
 .edit-button {
