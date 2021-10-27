@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
-import { Alert, Button, Card, Col, Container, Form, Image, Row } from 'react-bootstrap'
+import { Alert, Button, Card, Col, Container, Form, Image, Row, FloatingLabel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/navbar/Navbar'
-import SearchBar from '../components/SearchBar';
-import results from '../results'
-import { useAuth } from '../AuthContext'
-import Art from '../images/art/LoginPageArt.svg'
+import Navbar from '../navbar/Navbar'
+import SearchBar from '../SearchBar';
+import results from '../../results'
+import { useAuth } from '../../AuthContext'
+import Art from '../../images/art/LoginPageArt.svg'
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,9 +20,9 @@ const Login = () => {
     var userFound = false;
 
     async function handleSubmit(e) {
-        e.preventDefault();
-        setError('');
-        setLoading(true);
+        e.preventDefault()
+        setError('')
+        setLoading(true)
         await results.get('/users/' + userType + '.json')
             .then(function (response) {
                 for (let key in response.data) {
@@ -38,13 +38,12 @@ const Login = () => {
         } else {
             try {
                 await login(email, password)
-                isAgency ? history.push('/serviceagency') : history.push('/')
+                isAgency ? history.push('/serviceagency/dashboard') : history.push('/')
             } catch {
                 setError('Failed to log in');
             }
             setLoading(false)
         }
-        console.log(userFound)
     }
 
     return (
@@ -55,37 +54,53 @@ const Login = () => {
                 <Row>
                     <Col>
                         <h3>Login</h3>
-                        <Card style={{ maxWidth: '25rem' }}>
+                        <Card>
                             {!loading && error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
                             <Card.Body>
                                 <Form>
-                                    <Form.Group className="mb-3" controlId="signInEmail">
-                                        <Form.Control
-                                            required
-                                            type="email"
-                                            placeholder="Email"
-                                            onChange={(e) => setEmail(e.target.value)} />
+                                    <Form.Group>
+                                        <FloatingLabel
+                                            className="mb-3"
+                                            label="Email Address"
+                                        >
+                                            <Form.Control
+                                                required
+                                                type="email"
+                                                placeholder="Email Address"
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            />
+                                        </FloatingLabel>
                                     </Form.Group>
 
-                                    <Form.Group className="mb-3" controlId="signInPassword">
-                                        <Form.Control
-                                            required
-                                            type="password"
-                                            placeholder="Password"
-                                            onChange={(e) => setPassword(e.target.value)} />
+                                    <Form.Group>
+                                        <FloatingLabel
+                                            className="mb-3"
+                                            label="Password"
+                                        >
+                                            <Form.Control
+                                                required
+                                                type="password"
+                                                placeholder="Password"
+                                                onChange={(e) => setPassword(e.target.value)}
+                                            />
+                                        </FloatingLabel>
                                     </Form.Group>
                                     <div className="d-grid gap-2">
-                                        <Button variant="success"
+                                        <Button
+                                            variant="success"
                                             type="submit"
-                                            onClick={handleSubmit}>
+                                            onClick={handleSubmit}
+                                        >
                                             Login
                                         </Button>
                                     </div>
                                 </Form>
+                                <hr />
                                 <div className='mt-2 d-flex justify-content-center'>
-                                    <Link to='/forgotpassword' className='link-format red-font'> Forgot Password? </Link>
+                                    <Link to='/forgotpassword' className='link-format red-font'>
+                                        Forgot Password?
+                                    </Link>
                                 </div>
-
                             </Card.Body>
                         </Card>
                     </Col>

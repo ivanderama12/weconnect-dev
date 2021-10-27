@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Navbar as NavB, Container, Nav, Button } from 'react-bootstrap'
+import { Navbar as NavB, Nav, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import logo from '../../images/WeConnect-Logo.svg'
@@ -32,32 +32,45 @@ const Navbar = () => {
 
     return (
         <div>
-            <NavB bg="light" expand="md">
-                <Container>
-                    <NavB.Brand as={Link} to={isAgency ? "/serviceagency" : "/"}>
-                        <img src={logo} alt='weconnect-logo' />
-                    </NavB.Brand>
-                    <NavB.Toggle aria-controls="basic-navbar-nav" />
-                    
-                    {!currentUser && <NavB.Collapse className="justify-content-end" id="basic-navbar-nav">
-                        <Nav style={{ gap: '10px' }}>
-                            <Nav.Link as={Link} to={isAgency ? '/serviceagency/register' : '/register'}>Register</Nav.Link>
-                            <Nav.Link as={Link} to={isAgency ? '/serviceagency/login' : '/login'}>Login</Nav.Link>
-                            <Button variant='outline-danger'
-                                onClick={handleButtonClick}
-                                style={{
-                                    maxWidth: '180px'
-                                }}>
-                                {isAgency ? 'For Establishments' : 'For Service Agencies'}
-                            </Button>
-                        </Nav>
-                    </NavB.Collapse>}
+            <NavB className="px-3" bg="light" expand="md">
+                <NavB.Brand as={Link} to={isAgency ? "/serviceagency" : "/"}>
+                    <img src={logo} alt='weconnect-logo' />
+                </NavB.Brand>
+                <NavB.Toggle aria-controls="basic-navbar-nav" />
 
-                    {currentUser && <div className="justify-content-end">
-                        <Button onClick={handleLogout}>Logout</Button>
-                    </div>}
+                <NavB.Collapse className="justify-content-end" id="basic-navbar-nav">
+                    {!currentUser && <Nav style={{ gap: '10px' }}>
+                        <Nav.Link
+                            as={Link}
+                            to={isAgency ? '/serviceagency/register' : '/register'}
+                        >
+                            Register
+                        </Nav.Link>
+
+                        <Nav.Link
+                            as={Link}
+                            to={isAgency ? '/serviceagency/login' : '/login'}
+                        >
+                            Login
+                        </Nav.Link>
+                        <Button
+                            variant='outline-danger'
+                            onClick={handleButtonClick}
+                            style={{ width: '180px' }}>
+                            {isAgency ? 'For Establishments' : 'For Service Agencies'}
+                        </Button>
+                    </Nav>}
+<<<<<<< HEAD
+
+=======
                     
-                </Container>
+>>>>>>> b4a60fbb56c4bbc2f0a52b22d5fb03ffb7f2c86f
+                    {currentUser && <Nav className="justify-content-end">
+                        <Button onClick={handleLogout}>Logout</Button>
+                    </Nav>}
+                </NavB.Collapse>
+
+
             </NavB>
         </div>
     );
