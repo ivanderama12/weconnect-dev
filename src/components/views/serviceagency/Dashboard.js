@@ -6,7 +6,6 @@ import manageServiceIcon from '../../../images/icons/ManageServicesButton.png'
 import manageAgreementIcon from '../../../images/icons/ManageAgreementsButton.png'
 import Navbar from '../../navbar/Navbar'
 import SearchBar from '../../SearchBar'
-import { useAuth } from '../../../AuthContext'
 
 const Dashboard = () => {
     return (

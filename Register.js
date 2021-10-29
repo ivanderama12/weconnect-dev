@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { Alert, Button, Card, Col, Container, Form, Image, Row, FloatingLabel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Navbar from '../../navbar/Navbar'
-import SearchBar from '../../SearchBar';
+import Navbar from './src/components/navbar/Navbar'
+import SearchBar from './src/components/SearchBar';
 
-import { useAuth } from '../../../AuthContext'
+import results from './src/results'
+import { useAuth } from './src/AuthContext'
 import Art from '../../../images/art/RegisterPageArt.svg'
-import EstablishmentForm from './EstablishmentForm';
-import AgencyForm from './AgencyForm';
 
 const Register = () => {
+    const [contactPerson, setContactPerson] = useState('')
+    const [companyName, setCompanyName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -19,15 +20,19 @@ const Register = () => {
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const { signup, isAgency, currentUser } = useAuth()
+    const { signup, isAgency } = useAuth()
+    const userType = isAgency ? 'serviceagency' : 'establishment'
+    var errorCheck = false;
 
     const handleCheck = () => {
         checked ? setChecked(false) : setChecked(true)
     }
 
     async function handleSubmit(e) {
-        var errorCheck = false;
         e.preventDefault();
+        errorCheck = false;
+        setSuccess(false);
+        setLoading(true);
         if (!checked) {
             setLoading(false)
             return setError('Must accept Terms of Service and Privacy Policy')
@@ -36,18 +41,36 @@ const Register = () => {
             setLoading(false)
             return setError('Passwords do not match')
         }
-        setLoading(true)
         try {
-            setError('')
+            setError()
             await signup(email, password)
         } catch {
-            errorCheck = true
-            setError('Something went wrong')
             setLoading(false)
+            errorCheck = true;
+            setError('Failed to create account');
         }
-        console.log('errc', errorCheck)
         if (!errorCheck) {
-            setSuccess(true)
+            var data = isAgency ? {
+                contactPerson: contactPerson,
+                companyName: companyName,
+                contactNumber: '',
+                email: email,
+                premiumExpiry: ''
+            } : {
+                contactPerson: contactPerson,
+                companyName: companyName,
+                contactNumber: '',
+                email: email,
+                userTitle: ''
+            }
+
+            results.post('/users/' + userType + '.json', data)
+                .then(function (response) {
+                    setSuccess(true)
+                })
+                .catch(function (error) {
+                    setError('database fail');
+                });
             setLoading(false)
         }
     }
@@ -62,9 +85,37 @@ const Register = () => {
                         <h3>Create Account</h3>
                         <Card>
                             {error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
-                            {success && !error && <Alert className='mx-3 mt-3 mb-0' variant='success' style={{ fontSize: '14px' }}> Account Created Successfully! Set up user information </Alert>}
+                            {success && !error && <Alert className='mx-3 mt-3 mb-0' variant='success' style={{ fontSize: '14px' }}> Account Created Successfully  </Alert>}
                             <Card.Body>
-                                {!success && <Form onSubmit={handleSubmit}>
+                                <Form>
+                                    <Form.Group>
+                                        <FloatingLabel
+                                            className="mb-3"
+                                            label="Contact Person Name"
+                                        >
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="Contact Person Name"
+                                                onChange={(e) => setContactPerson(e.target.value)}
+                                            />
+                                        </FloatingLabel>
+                                    </Form.Group>
+
+                                    <Form.Group>
+                                        <FloatingLabel
+                                            className="mb-3"
+                                            label="Company Name"
+                                        >
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="Company Name"
+                                                onChange={(e) => setCompanyName(e.target.value)}
+                                            />
+                                        </FloatingLabel>
+                                    </Form.Group>
+
                                     <Form.Group>
                                         <FloatingLabel
                                             className="mb-3"
@@ -112,7 +163,7 @@ const Register = () => {
                                         />
                                         <Form.Label>
                                             <p className='ms-2'>By signing up you accept the
-                                                <Link className='link-format red-font' to='/tos'> Terms of Service </Link>
+                                                <Link className='link-format red-font' to='/tos'> Terms of Service </Link> 
                                                 and
                                                 <Link className='link-format red-font' to='/privacy'> Privacy Policy </Link>
                                             </p>
@@ -123,15 +174,12 @@ const Register = () => {
                                             variant="danger"
                                             type="submit"
                                             disabled={loading}
+                                            onClick={handleSubmit}
                                         >
                                             Register
                                         </Button>
                                     </div>
-                                </Form>}
-
-                                {!error && currentUser && success && !isAgency && <EstablishmentForm />}
-                                {!error && currentUser && success && isAgency && <AgencyForm />}
-
+                                </Form>
                             </Card.Body>
                         </Card>
                     </Col>

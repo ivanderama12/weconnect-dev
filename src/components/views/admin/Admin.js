@@ -8,7 +8,7 @@ import AdminNavbar from '../../navbar/AdminNavbar'
 const Admin = () => {
     return (
         <div>
-            <Navbar />
+            <AdminNavbar />
             <div className='ms-3 mt-3'>
                 <h1>Hi Admin.<br />
                     Welcome to WeConnect</h1>

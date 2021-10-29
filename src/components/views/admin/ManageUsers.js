@@ -4,7 +4,7 @@ import { Alert, Button, Card, Container, Col, Image, Row, ListGroup, Modal } fro
 import Art from '../../../images/art/AdminManageUsersArt.svg'
 import results from '../../../results'
 import editIcon from '../../../images/icons/EditIcon.svg'
-import EditForm from '../../EditForm'
+import EditForm from './EditForm'
 
 const ManageUsers = () => {
 

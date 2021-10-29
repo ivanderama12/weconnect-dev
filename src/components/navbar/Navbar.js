@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Navbar as NavB, Container, Nav, Button } from 'react-bootstrap'
+import { Navbar as NavB, Nav, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import logo from '../../images/WeConnect-Logo.svg'
@@ -60,10 +60,7 @@ const Navbar = () => {
                             {isAgency ? 'For Establishments' : 'For Service Agencies'}
                         </Button>
                     </Nav>}
-<<<<<<< Updated upstream
                     
-=======
->>>>>>> Stashed changes
                     {currentUser && <Nav className="justify-content-end">
                         <Button onClick={handleLogout}>Logout</Button>
                     </Nav>}

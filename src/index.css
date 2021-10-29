@@ -1,7 +1,9 @@
-.bg-red-gradient{
+.bg-red-gradient {
     background: linear-gradient(91.59deg, rgba(242, 19, 19, 0.8) 48.65%, rgba(244, 67, 54, 0) 149.07%);
 }
-.link-format, .link-format:hover{
+
+.link-format,
+.link-format:hover {
     text-decoration: none;
 }
 
@@ -24,17 +26,19 @@
 }
 
 .menu-button {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    background-color: #C4C4C4;
-    padding-top: $spacer;
-=======
->>>>>>> Stashed changes
-=======
-    background-color: #C4C4C4;
->>>>>>> Stashed changes
     width: 153px;
     height: 153px;
+    background-color: #C4C4C4;
+}
+
+.button-art {
+    height: 85px;
+    width: 85px;
+}
+
+.check-art {
+    height: 28px;
+    width: 27px;
 }
 
 .button-art {
