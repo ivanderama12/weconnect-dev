@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar as NavB, Dropdown } from 'react-bootstrap'
+import { Navbar as NavB, Dropdown, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import logo from '../../images/WeConnect-Logo.svg'
 import notificon from '../../images/icons/NotificationIcon.svg'
