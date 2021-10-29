@@ -60,11 +60,7 @@ const Navbar = () => {
                             {isAgency ? 'For Establishments' : 'For Service Agencies'}
                         </Button>
                     </Nav>}
-<<<<<<< HEAD
-
-=======
                     
->>>>>>> b4a60fbb56c4bbc2f0a52b22d5fb03ffb7f2c86f
                     {currentUser && <Nav className="justify-content-end">
                         <Button onClick={handleLogout}>Logout</Button>
                     </Nav>}

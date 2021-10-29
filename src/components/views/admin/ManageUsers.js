@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react'
-<<<<<<< HEAD:src/components/views/admin/ManageUsers.js
 import AdminNavbar from '../../navbar/AdminNavbar'
-=======
-import Navbar from '../../navbar/AdminNavbar'
->>>>>>> b4a60fbb56c4bbc2f0a52b22d5fb03ffb7f2c86f:src/views/admin/ManageUsers.js
 import { Alert, Button, Card, Container, Col, Image, Row, ListGroup, Modal } from 'react-bootstrap'
 import Art from '../../../images/art/AdminManageUsersArt.svg'
 import results from '../../../results'
 import editIcon from '../../../images/icons/EditIcon.svg'
-<<<<<<< HEAD:src/components/views/admin/ManageUsers.js
 import EditForm from './EditForm'
-=======
-import EditForm from '../../EditForm'
->>>>>>> b4a60fbb56c4bbc2f0a52b22d5fb03ffb7f2c86f:src/views/admin/ManageUsers.js
 
 const ManageUsers = () => {
 
@@ -84,11 +76,7 @@ const ManageUsers = () => {
 
     return (
         <div>
-<<<<<<< HEAD:src/components/views/admin/ManageUsers.js
             <AdminNavbar />
-=======
-            <Navbar />
->>>>>>> b4a60fbb56c4bbc2f0a52b22d5fb03ffb7f2c86f:src/views/admin/ManageUsers.js
             <h1 className='text-center my-5' >Manage Users</h1>
             <Container>
                 <Row style={{ gap: '60px' }} >

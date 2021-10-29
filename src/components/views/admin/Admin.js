@@ -3,11 +3,7 @@ import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import manageUserIcon from '../../../images/icons/ManageUsersButton.png'
 import manageServiceIcon from '../../../images/icons/ManageServicesButton.png'
-<<<<<<< HEAD:src/components/views/admin/Admin.js
 import AdminNavbar from '../../navbar/AdminNavbar'
-=======
-import Navbar from '../../navbar/AdminNavbar'
->>>>>>> b4a60fbb56c4bbc2f0a52b22d5fb03ffb7f2c86f:src/views/admin/Admin.js
 
 const Admin = () => {
     return (
