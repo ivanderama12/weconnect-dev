@@ -6,8 +6,9 @@ import manageServiceIcon from '../../../images/icons/ManageServicesButton.png'
 import manageAgreementIcon from '../../../images/icons/ManageAgreementsButton.png'
 import Navbar from '../../navbar/Navbar'
 import SearchBar from '../../SearchBar'
+import { useAuth } from '../../../AuthContext'
 
-const Admin = () => {
+const Dashboard = () => {
     return (
         <div>
             <Navbar />
@@ -20,17 +21,17 @@ const Admin = () => {
                 <Card className='position-relative p-4 admin-card'>
                     <div className='d-flex justify-content-center position-absolute top-50 start-50 translate-middle' style={{ width: '500px' }}>
                         <Button as={Link} to='/serviceagency/users' variant='light' className='menu-button mx-5'>
-                            <Image className='menu-button' src={manageUserIcon}></Image>
+                            <Image className='button-art' src={manageUserIcon}></Image>
                             Manage Users
                         </Button>
 
                         <Button as={Link} to='/serviceagency/services' variant='light' className='menu-button mx-5'>
-                            <Image src={manageServiceIcon}></Image>
+                            <Image className='button-art' src={manageServiceIcon}></Image>
                             Manage Services
                         </Button>
 
                         <Button as={Link} to='/serviceagency/agreements' variant='light' className='menu-button mx-5'>
-                            <Image src={manageAgreementIcon}></Image>
+                            <Image className='button-art' src={manageAgreementIcon}></Image>
                             Manage Agreements
                         </Button>
                     </div>
@@ -40,4 +41,4 @@ const Admin = () => {
     )
 }
 
-export default Admin
+export default Dashboard

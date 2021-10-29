@@ -24,8 +24,11 @@
 }
 
 .menu-button {
+<<<<<<< Updated upstream
     background-color: #C4C4C4;
     padding-top: $spacer;
+=======
+>>>>>>> Stashed changes
     width: 153px;
     height: 153px;
 }

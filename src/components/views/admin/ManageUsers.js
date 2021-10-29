@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../navbar/AdminNavbar'
+import AdminNavbar from '../../navbar/AdminNavbar'
 import { Alert, Button, Card, Container, Col, Image, Row, ListGroup, Modal } from 'react-bootstrap'
 import Art from '../../../images/art/AdminManageUsersArt.svg'
 import results from '../../../results'
@@ -76,7 +76,7 @@ const ManageUsers = () => {
 
     return (
         <div>
-            <Navbar />
+            <AdminNavbar />
             <h1 className='text-center my-5' >Manage Users</h1>
             <Container>
                 <Row style={{ gap: '60px' }} >

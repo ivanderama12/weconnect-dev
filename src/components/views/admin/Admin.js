@@ -3,7 +3,7 @@ import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import manageUserIcon from '../../../images/icons/ManageUsersButton.png'
 import manageServiceIcon from '../../../images/icons/ManageServicesButton.png'
-import Navbar from '../../navbar/AdminNavbar'
+import AdminNavbar from '../../navbar/AdminNavbar'
 
 const Admin = () => {
     return (

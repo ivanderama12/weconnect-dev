@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../../navbar/AdminNavbar'
+import AdminNavbar from '../../navbar/AdminNavbar'
 
 const ManageServices = () => {
     return (
         <div>
-            <Navbar />
+            <AdminNavbar />
         </div>
     )
 }

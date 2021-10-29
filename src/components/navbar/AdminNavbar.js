@@ -8,7 +8,7 @@ import msgicon from '../../images/icons/MessageIcon.svg'
 import agreeicon from '../../images/icons/AgreementIcon.svg'
 import logouticon from '../../images/icons/LogoutIcon.svg'
 
-const Navbar = () => {
+const AdminNavbar = () => {
     return (
         <div>
             <NavB className="justify-content-between px-3" bg="light" expand="md">
@@ -49,4 +49,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+export default AdminNavbar;

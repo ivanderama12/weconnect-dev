@@ -60,7 +60,10 @@ const Navbar = () => {
                             {isAgency ? 'For Establishments' : 'For Service Agencies'}
                         </Button>
                     </Nav>}
+<<<<<<< Updated upstream
                     
+=======
+>>>>>>> Stashed changes
                     {currentUser && <Nav className="justify-content-end">
                         <Button onClick={handleLogout}>Logout</Button>
                     </Nav>}
