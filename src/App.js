@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { AuthProvider } from './AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 
 import Search from './components/views/Search';
 import Login from './components/views/Login';
@@ -16,24 +17,24 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <div className="App">
-          <div>
-            <Switch>
-              <Route exact path='/' component={Search} />
-              <Route path='/login' component={Login} />
-              <Route path='/register' component={Register} />
-              <Route path='/forgotpassword' component={ForgotPassword} />
-              <Route exact path='/serviceagency' component={Search} />
-              <Route path='/serviceagency/login' component={Login} />
-              <Route path='/serviceagency/register' component={Register} />
-              <Route path='/serviceagency/premium' component={Premium} />
-              <Route path='/serviceagency/dashboard' component={SADash} />
-              <Route exact path='/admin' component={Admin} />
-              <Route path='/admin/users' component={AdminManageUsers} />
-              <Route path='/admin/services' component={AdminManageServices} />
-            </Switch>
+          <div className="App">
+            <div>
+              <Switch>
+                <Route exact path='/' component={Search} />
+                <Route path='/login' component={Login} />
+                <Route path='/register' component={Register} />
+                <Route path='/forgotpassword' component={ForgotPassword} />
+                <Route exact path='/serviceagency' component={Search} />
+                <Route path='/serviceagency/login' component={Login} />
+                <Route path='/serviceagency/register' component={Register} />
+                <Route path='/serviceagency/premium' component={Premium} />
+                <Route path='/serviceagency/dashboard' component={SADash} />
+                <Route exact path='/admin' component={Admin} />
+                <Route path='/admin/users' component={AdminManageUsers} />
+                <Route path='/admin/services' component={AdminManageServices} />
+              </Switch>
+            </div>
           </div>
-        </div>
       </AuthProvider>
     </BrowserRouter>
   );

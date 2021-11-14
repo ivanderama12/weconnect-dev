@@ -4,8 +4,13 @@ import Navbar from '../navbar/Navbar'
 import SearchBar from '../SearchBar';
 
 import Art from '../../images/art/SearchPageArt.svg'
+import { useAuth } from '../../AuthContext';
+
+
 
 const Search = () => {
+
+    const { setisagency } = useAuth()
 
     const [searchFound, setSearchFound] = useState(false);
 

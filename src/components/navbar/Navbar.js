@@ -5,16 +5,13 @@ import { Link } from 'react-router-dom'
 import logo from '../../images/WeConnect-Logo.svg'
 
 import { useAuth } from '../../AuthContext'
+import UserDropdown from './UserDropdown'
 
 const Navbar = () => {
 
     const history = useHistory()
-    const { currentUser, logout, setisagency, isAgency } = useAuth()
+    const { currentUser, setisagency, isAgency } = useAuth()
     const [isServiceAgency, setIsServiceAgency] = useState(false)
-
-    function handleLogout() {
-        logout()
-    }
 
     useEffect(() => {
         setIsServiceAgency(isAgency)
@@ -60,10 +57,8 @@ const Navbar = () => {
                             {isAgency ? 'For Establishments' : 'For Service Agencies'}
                         </Button>
                     </Nav>}
-                    
-                    {currentUser && <Nav className="justify-content-end">
-                        <Button onClick={handleLogout}>Logout</Button>
-                    </Nav>}
+
+                    {currentUser && <UserDropdown uid={currentUser.uid} />}
                 </NavB.Collapse>
 
 

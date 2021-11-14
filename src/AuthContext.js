@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from './firebase'
+import results from './results'
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -14,7 +15,7 @@ export function AuthProvider({ children }) {
     const [isAgency, setIsAgency] = useState(false)
 
     function signup(email, password) {
-        return createUserWithEmailAndPassword(auth, email, password)        
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     function login(email, password) {
@@ -32,15 +33,40 @@ export function AuthProvider({ children }) {
     function setisagency(param) {
         return setIsAgency(param);
     }
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
-            setLoading(false)
             setCurrentUser(user)
+            setLoading(false)
         })
+
+        // if (!loaded && currentUser) {
+        //     results.get('/users/serviceagency/' + currentUser.uid + '.json')
+        //         .then(function (response) {
+        //             setUserDetails(response.data)
+        //             if (userDetails) {
+        //                 setFound = true
+        //                 setUserType('serviceagency')
+        //             }
+        //         }).catch(function (error) {
+        //             console.log(error)
+        //         })
+        //     if (!found) {
+        //         results.get('/users/establishment/' + currentUser.uid + '.json')
+        //             .then(function (response) {
+        //                 setUserDetails(response.data)
+        //                 setUserType('establishment')
+        //             }).catch(function (error) {
+        //                 console.log(error)
+        //             })
+        //     }
+        //     console.log(currentUser)
+        // }
+
 
         return unsubscribe
     }, [currentUser])
+
+
 
     const value = {
         isAgency,

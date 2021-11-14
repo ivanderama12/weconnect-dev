@@ -22,11 +22,10 @@ const AdminNavbar = () => {
                 style={
                     { gap: '10px' }} >
                 <Dropdown >
-                    <Dropdown.Toggle variant='light'
-                        align='end' >
+                    <Dropdown.Toggle variant='light'>
                         Admin
                     </Dropdown.Toggle>
-                    <Dropdown.Menu >
+                    <Dropdown.Menu align='end'>
                         <Dropdown.Item as={Link}
                             to='/admin/users' >
                             <Image className='menu-icon' src={usericon} alt='users' />
@@ -50,7 +49,6 @@ const AdminNavbar = () => {
                                 alt='logout' /> Logout
                         </Dropdown.Item>
                     </Dropdown.Menu>
-
                 </Dropdown>
 
                 <Dropdown >
@@ -58,7 +56,7 @@ const AdminNavbar = () => {
                         <Image src={notificon}
                             alt='notif' />
                     </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu align='end'>
                         <Dropdown.Item href="#action/3.1"> Action </Dropdown.Item>
                         <Dropdown.Item href="#action/3.2" > Another action </Dropdown.Item>
                         <Dropdown.Item href="#action/3.3" > Something </Dropdown.Item>
