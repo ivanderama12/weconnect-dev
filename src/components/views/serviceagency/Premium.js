@@ -5,6 +5,7 @@ import SearchBar from '../../SearchBar'
 import Navbar from '../../navbar/Navbar'
 import Art from '../../../images/art/PremiumArt.svg'
 import check from '../../../images/icons/CheckBoxRed.png'
+import { Link } from 'react-router-dom'
 
 const Premium = () => {
     const [month, setMonth] = useState('danger')
@@ -100,6 +101,16 @@ const Premium = () => {
                                 onClick={handlePurchase}
                             >
                                 Purchase
+                            </Button>
+                        </div>
+
+                        <div className="mt-5 d-grid gap-2">
+                            <Button
+                                variant="secondary"
+                                as={Link}
+                                to='dashboard'
+                            >
+                                Skip
                             </Button>
                         </div>
 

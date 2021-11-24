@@ -32,21 +32,16 @@ const AdminNavbar = () => {
                             Manage Users
                         </Dropdown.Item>
                         <Dropdown.Item as={Link} to='/admin/messages' >
-                            < img className='menu-icon'
-                                src={msgicon}
-                                alt='msgs'
-                            />
+                            <Image className='menu-icon' src={msgicon} alt='msgs' />
                             Messages
-                        </Dropdown.Item> <Dropdown.Item as={Link}
-                            to='/admin/agreements' > <img className='menu-icon'
-                                src={agreeicon}
-                                alt='agreements' /> View Agreements </Dropdown.Item> {
-                                /* <Dropdown.Item as={Link} to='/admin/' >Change Password</Dropdown.Item> */}
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/admin/agreements'>
+                            <Image className='menu-icon' src={agreeicon} alt='agreements' /> View Agreements
+                        </Dropdown.Item>
+                        {/* <Dropdown.Item as={Link} to='/admin/' >Change Password</Dropdown.Item> */}
                         <Dropdown.Divider />
-                        <Dropdown.Item as={Link}
-                            to='/' > <Image className='menu-icon'
-                                src={logouticon}
-                                alt='logout' /> Logout
+                        <Dropdown.Item as={Link} to='/' >
+                            <Image className='menu-icon' src={logouticon} alt='logout' /> Logout
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

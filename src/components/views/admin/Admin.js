@@ -14,7 +14,7 @@ const Admin = () => {
                     Welcome to WeConnect</h1>
             </div>
             <div className='d-flex justify-content-center mt-5'>
-                <Card className='position-relative p-4 admin-card'>
+                <Card className='position-relative p-4 dash-card'>
                     <div className='d-flex justify-content-center position-absolute top-50 start-50 translate-middle' style={{ width: '500px' }}>
                         <Button as={Link} to='/admin/users' variant='light' className='menu-button pt-3 mx-5'>
                             <Image className='button-art' src={manageUserIcon}></Image>

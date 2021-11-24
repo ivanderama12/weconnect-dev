@@ -10,7 +10,8 @@ import ForgotPassword from './components/views/ForgotPassword';
 import Admin from './components/views/admin/Admin';
 import AdminManageUsers from './components/views/admin/ManageUsers';
 import AdminManageServices from './components/views/admin/ManageServices'
-import SADash from './components/views/serviceagency/Dashboard'
+import AgencyDash from './components/views/serviceagency/Dashboard'
+import AgencyAccount from './components/views/serviceagency/account/Account'
 import Premium from './components/views/serviceagency/Premium';
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
                 <Route path='/serviceagency/login' component={Login} />
                 <Route path='/serviceagency/register' component={Register} />
                 <Route path='/serviceagency/premium' component={Premium} />
-                <Route path='/serviceagency/dashboard' component={SADash} />
+                <Route path='/serviceagency/dashboard' component={AgencyDash} />
+                <Route path='/serviceagency/account' component={AgencyAccount} />
                 <Route exact path='/admin' component={Admin} />
                 <Route path='/admin/users' component={AdminManageUsers} />
                 <Route path='/admin/services' component={AdminManageServices} />

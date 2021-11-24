@@ -1,9 +1,7 @@
-.bg-red-gradient {
+.bg-red-gradient{
     background: linear-gradient(91.59deg, rgba(242, 19, 19, 0.8) 48.65%, rgba(244, 67, 54, 0) 149.07%);
 }
-
-.link-format,
-.link-format:hover {
+.link-format, .link-format:hover{
     text-decoration: none;
 }
 
@@ -20,25 +18,26 @@
     width: auto;
 }
 
-.admin-card {
+.dash-card {
     width: 652px;
     height: 324px;
 }
 
+.account-card {
+    width: 405px;
+    height: 154px;
+}
+
 .menu-button {
+    background-color: #C4C4C4;
     width: 153px;
     height: 153px;
+}
+
+.menu-button-account {
     background-color: #C4C4C4;
-}
-
-.button-art {
-    height: 85px;
-    width: 85px;
-}
-
-.check-art {
-    height: 28px;
-    width: 27px;
+    width: 153px;
+    height: 128px;
 }
 
 .button-art {

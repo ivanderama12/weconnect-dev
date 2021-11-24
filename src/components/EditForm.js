@@ -12,29 +12,66 @@ const EditForm = (props) => {
     return (
         <div>
             {isAgency && <Form>
-                <Form.Group className='mb-3' controlId='signInEmail'>
+                <Form.Group className='mb-3' controlId='editContact'>
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Email address"
+                        label="Contact Person"
                         className="mb-3"
                     >
                         <Form.Control
                             required
                             type="text"
-                            placeholder="Email address"
+                            placeholder="Contact Person"
                         // onChange={(e) => setEmail(e.target.value)} 
                         />
                     </FloatingLabel>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="signInPassword">
-                    <Form.Control
-                        required
-                        type="password"
-                        placeholder="Password"
-                    // onChange={(e) => setPassword(e.target.value)} 
-                    />
+                <Form.Group className="mb-3" controlId="editCompany">
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Company Name"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Company Name"
+                        // onChange={(e) => setPassword(e.target.value)} 
+                        />
+                    </FloatingLabel>
                 </Form.Group>
+
+                <Form.Group className="mb-3" controlId="editEmail">
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Email Address"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Email Address"
+                        // onChange={(e) => setPassword(e.target.value)} 
+                        />
+                    </FloatingLabel>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="editExpiry">
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Premium Expiry"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Premium Expiry"
+                        // onChange={(e) => setPassword(e.target.value)} 
+                        />
+                    </FloatingLabel>
+                </Form.Group>
+
                 <div className="d-grid gap-2">
                     <Button variant="success"
                         type="submit"

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, updateProfile } from "firebase/auth";
 import { auth } from './firebase'
 import results from './results'
 const AuthContext = React.createContext();
@@ -13,6 +13,8 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const [isAgency, setIsAgency] = useState(false)
+    const [userDetails, setUserDetails] = useState({})
+    const [userType, setUserType] = useState()
 
     function signup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -26,6 +28,13 @@ export function AuthProvider({ children }) {
         return sendPasswordResetEmail(auth, email)
     }
 
+    function updateprofile(name, url) {
+        return updateProfile(currentUser, {
+            displayName: name,
+            photoURL: url
+        })
+    }
+
     function logout() {
         return signOut(auth)
     }
@@ -33,35 +42,36 @@ export function AuthProvider({ children }) {
     function setisagency(param) {
         return setIsAgency(param);
     }
+
+    function getUserAgency(uid) {
+        return results.get('/users/serviceagency/' + uid + '.json')
+    }
+
+    function getUserEstablishment(uid) {
+        return results.get('/users/establishment/' + uid + '.json')
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setCurrentUser(user)
             setLoading(false)
+            var details
+            if (!details && currentUser)
+                Promise.all([getUserAgency(user.uid), getUserEstablishment(user.uid)])
+                    .then(function (results) {
+                        const sa = results[0]
+                        const est = results[1]
+                        if (sa.data !== null) {
+                            details = sa.data
+                            setUserDetails(details)
+                            setUserType('serviceagency')
+                        } else {
+                            details = est.data
+                            setUserDetails(details)
+                            setUserType('establishment')
+                        }
+                    })
         })
-
-        // if (!loaded && currentUser) {
-        //     results.get('/users/serviceagency/' + currentUser.uid + '.json')
-        //         .then(function (response) {
-        //             setUserDetails(response.data)
-        //             if (userDetails) {
-        //                 setFound = true
-        //                 setUserType('serviceagency')
-        //             }
-        //         }).catch(function (error) {
-        //             console.log(error)
-        //         })
-        //     if (!found) {
-        //         results.get('/users/establishment/' + currentUser.uid + '.json')
-        //             .then(function (response) {
-        //                 setUserDetails(response.data)
-        //                 setUserType('establishment')
-        //             }).catch(function (error) {
-        //                 console.log(error)
-        //             })
-        //     }
-        //     console.log(currentUser)
-        // }
-
 
         return unsubscribe
     }, [currentUser])
@@ -71,10 +81,12 @@ export function AuthProvider({ children }) {
     const value = {
         isAgency,
         currentUser,
+        userDetails,
         setisagency,
         signup,
         login,
         logout,
+        updateprofile,
         reset
     }
 

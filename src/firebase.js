@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth';
+import { getAuth } from 'firebase/auth'
+import { getStorage, ref } from "firebase/storage"
 
 const app = initializeApp({
     apiKey: "AIzaSyD3ZmT30HE47Aw2bvGWwo5dDQN1Cdc54aQ",
@@ -9,6 +10,8 @@ const app = initializeApp({
     storageBucket: "weconnect-dev-de5dc.appspot.com",
     messagingSenderId: "86347457916",
     appId: "1:86347457916:web:7a22397e6de6ec76cfb0f9"
-});
+})
 
-export const auth = getAuth(app);
+export const auth = getAuth(app)
+export const storage = getStorage(app)
+export const storageRef = ref(storage)

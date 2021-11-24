@@ -10,7 +10,7 @@ import UserDropdown from './UserDropdown'
 const Navbar = () => {
 
     const history = useHistory()
-    const { currentUser, setisagency, isAgency } = useAuth()
+    const { currentUser, setisagency, isAgency, userType } = useAuth()
     const [isServiceAgency, setIsServiceAgency] = useState(false)
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
         <div>
             <NavB className="px-3" bg="light" expand="md">
-                <NavB.Brand as={Link} to={isAgency ? "/serviceagency" : "/"}>
+                <NavB.Brand as={Link} to={isAgency || userType === 'serviceagency' ? "/serviceagency/dashboard" : "/"}>
                     <img src={logo} alt='weconnect-logo' />
                 </NavB.Brand>
                 <NavB.Toggle aria-controls="basic-navbar-nav" />
@@ -44,10 +44,7 @@ const Navbar = () => {
                             Register
                         </Nav.Link>
 
-                        <Nav.Link
-                            as={Link}
-                            to={isAgency ? '/serviceagency/login' : '/login'}
-                        >
+                        <Nav.Link as={Link} to={isAgency ? '/serviceagency/login' : '/login'}>
                             Login
                         </Nav.Link>
                         <Button

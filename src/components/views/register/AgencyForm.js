@@ -15,7 +15,7 @@ const AgencyForm = () => {
 
     const [loading, setLoading] = useState()
 
-    const { currentUser } = useAuth()
+    const { currentUser, updateprofile } = useAuth()
     const email = currentUser.email
     const uid = currentUser.uid
 
@@ -32,7 +32,8 @@ const AgencyForm = () => {
             
         })
             .then(function () {
-                history.push('/serviceagency/premium');
+                updateprofile(company, null)
+                history.push('premium');
             })
             .catch(function (error) {
                 console.log(error);
