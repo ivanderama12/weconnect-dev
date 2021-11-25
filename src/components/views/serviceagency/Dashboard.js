@@ -23,7 +23,7 @@ const Dashboard = () => {
             <div className='d-flex justify-content-center mt-5'>
                 <Card className='position-relative p-4 admin-card'>
                     <div className='d-flex justify-content-center position-absolute top-50 start-50 translate-middle' style={{ width: '500px' }}>
-                        <Button as={Link} to='profile' variant='light' className='menu-button mx-4'>
+                        <Button as={Link} to='account' variant='light' className='menu-button mx-4'>
                             <Image className='button-art' src={manageUserIcon}></Image>
                             My Account
                         </Button>

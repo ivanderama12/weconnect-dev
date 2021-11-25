@@ -28,8 +28,8 @@ const AgencyForm = () => {
             userTitle: title,
             companyName: company,
             contactNumber: number,
-            premiumExpiry:null
-            
+            premiumExpiry: null
+
         })
             .then(function () {
                 updateprofile(company, null)
@@ -98,6 +98,8 @@ const AgencyForm = () => {
                         />
                     </FloatingLabel>
                 </Form.Group>
+
+                
 
 
                 <div className="d-grid gap-2">

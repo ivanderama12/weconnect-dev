@@ -1,18 +1,16 @@
 import React from 'react'
+import { Col, Row } from 'react-bootstrap'
 import { useAuth } from '../../../../AuthContext'
 
 const Profile = () => {
     const { userDetails } = useAuth()
     return (
         <div>
-            <h3>Profile</h3>
-            {userDetails.userName}
-            <br />
-            {userDetails.userTitle}
-            <br />
-            {userDetails.companyName}
-            <br />
-            {userDetails.contactNumber}
+            <h3>My Profile</h3>
+            <Row sm={1} md={2}>
+                <Col fluid>test</Col>
+                <Col fluid>Test</Col>
+            </Row>
         </div>
     )
 }

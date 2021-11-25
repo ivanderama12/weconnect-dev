@@ -55,3 +55,7 @@
     height: 351px;
     overflow-y: scroll;
 }
+
+.border-between {
+    border-right: 1px solid #C4C4C4;
+}
