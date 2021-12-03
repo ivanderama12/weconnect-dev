@@ -36,7 +36,8 @@ export function AuthProvider({ children }) {
     }
 
     function logout() {
-        return signOut(auth)
+        setUserType()
+        signOut(auth)
     }
 
     function setisagency(param) {
@@ -82,6 +83,7 @@ export function AuthProvider({ children }) {
         isAgency,
         currentUser,
         userDetails,
+        userType,
         setisagency,
         signup,
         login,

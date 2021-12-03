@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import manageUserIcon from '../../../images/icons/ManageUsersButton.png'
+import manageUserIcon from '../../../images/icons/PersonButton.png'
 import manageServiceIcon from '../../../images/icons/ManageServicesButton.png'
 import AdminNavbar from '../../navbar/AdminNavbar'
 

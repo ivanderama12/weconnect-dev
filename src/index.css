@@ -53,9 +53,32 @@
 
 .users-card {
     height: 351px;
+}
+
+.overflow {
     overflow-y: scroll;
 }
 
 .border-between {
-    border-right: 1px solid #C4C4C4;
+    border-right: 1px solid #C4C4C4 ;
+}
+
+.profile-pic {
+    height: 150px;
+    width: 150px;
+}
+
+.check-art {
+    height: 35px;
+    width: 40px;
+}
+
+.post-pic {
+    height: 136px;
+    width: auto;
+}
+
+.create-post-pic {
+    height: 34px;
+    width: auto;
 }

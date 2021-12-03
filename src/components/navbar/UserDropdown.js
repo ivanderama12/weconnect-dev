@@ -11,8 +11,10 @@ import logouticon from '../../images/icons/LogoutIcon.svg'
 
 const UserDropdown = () => {
 
-    const { logout, setisagency, userDetails } = useAuth()
+    const { logout, setisagency, userDetails, currentUser, userType } = useAuth()
     const history = useHistory()
+    const type = userType === 'establishment' ? '/' : '/serviceagency/'
+
 
     function handleLogout() {
         setisagency(false)
@@ -25,21 +27,21 @@ const UserDropdown = () => {
             <Dropdown >
                 <Dropdown.Toggle variant='light'>{userDetails && userDetails.companyName} </Dropdown.Toggle>
                 <Dropdown.Menu align='end'>
-                    <Dropdown.Item as={Link} to='account'>
-                        <Image className='menu-icon' src={usericon} alt='users' />
+                    <Dropdown.Item as={Link} to={type + 'account'}>
+                        <Image className='menu-icon me-1' src={usericon} alt='users' />
                         Manage Account
                     </Dropdown.Item>
-                    <Dropdown.Item as={Link} to='messages' >
-                        <Image className='menu-icon' src={msgicon} alt='msgs' />
+                    <Dropdown.Item as={Link} to={type + 'messages'} >
+                        <Image className='menu-icon me-1' src={msgicon} alt='msgs' />
                         Messages
                     </Dropdown.Item>
-                    <Dropdown.Item as={Link} to='agreements' >
-                        <Image className='menu-icon' src={agreeicon} alt='agreements' />
+                    <Dropdown.Item as={Link} to={type + 'agreements'} >
+                        <Image className='menu-icon me-1' src={agreeicon} alt='agreements' />
                         View Agreements
                     </Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={() => handleLogout()}>
-                        <Image className='menu-icon' src={logouticon} alt='logout' />
+                        <Image className='menu-icon me-1' src={logouticon} alt='logout' />
                         Logout
                     </Dropdown.Item>
                 </Dropdown.Menu>

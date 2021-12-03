@@ -50,9 +50,7 @@ const EditForm = (props) => {
                             type="text"
                             placeholder="Contact Person"
                             value={contactPerson}
-                            onChange={
-                                (e) => setContactPerson(e.target.value)
-                            }
+                            onChange={(e) => setContactPerson(e.target.value)}
                         />
                     </FloatingLabel >
                 </Form.Group>
@@ -66,9 +64,7 @@ const EditForm = (props) => {
                             type="text"
                             placeholder="Company Name"
                             value={companyName}
-                            onChange={
-                                (e) => setCompanyName(e.target.value)
-                            }
+                            onChange={(e) => setCompanyName(e.target.value)}
                         />
                     </FloatingLabel >
                 </Form.Group>
@@ -82,9 +78,7 @@ const EditForm = (props) => {
                             type="email"
                             placeholder="Email Address"
                             value={email}
-                            onChange={
-                                (e) => setEmail(e.target.value)
-                            }
+                            onChange={(e) => setEmail(e.target.value)}
                         /> </FloatingLabel>
                 </Form.Group>
 
@@ -95,9 +89,7 @@ const EditForm = (props) => {
                         <Form.Control
                             type='date'
                             value={premiumExpiry}
-                            onChange={
-                                (e) => setPremiumExpiry(e.target.value)
-                            }
+                            onChange={(e) => setPremiumExpiry(e.target.value)}
                         /> </FloatingLabel>
                 </Form.Group>
 

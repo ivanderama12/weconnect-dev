@@ -28,8 +28,8 @@ const AgencyForm = () => {
             userTitle: title,
             companyName: company,
             contactNumber: number,
-            premiumExpiry: null
-
+            premiumExpiry: 30,
+            freeTrial: true
         })
             .then(function () {
                 updateprofile(company, null)
@@ -44,10 +44,7 @@ const AgencyForm = () => {
         <div>
             <Form>
                 <Form.Group>
-                    <FloatingLabel
-                        className="mb-3"
-                        label="Contact Person Name"
-                    >
+                    <FloatingLabel className="mb-3" label="Contact Person Name" >
                         <Form.Control
                             required
                             type="text"
@@ -58,10 +55,7 @@ const AgencyForm = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <FloatingLabel
-                        className="mb-3"
-                        label="Contact Person Title"
-                    >
+                    <FloatingLabel className="mb-3" label="Contact Person Title" >
                         <Form.Control
                             required
                             type="text"
@@ -72,10 +66,7 @@ const AgencyForm = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <FloatingLabel
-                        className="mb-3"
-                        label="Company Name"
-                    >
+                    <FloatingLabel className="mb-3" label="Company Name" >
                         <Form.Control
                             required
                             type="text"
@@ -86,10 +77,7 @@ const AgencyForm = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <FloatingLabel
-                        className="mb-3"
-                        label="Contact Number"
-                    >
+                    <FloatingLabel className="mb-3" label="Contact Number" >
                         <Form.Control
                             required
                             type="text"
@@ -98,9 +86,6 @@ const AgencyForm = () => {
                         />
                     </FloatingLabel>
                 </Form.Group>
-
-                
-
 
                 <div className="d-grid gap-2">
                     <Button

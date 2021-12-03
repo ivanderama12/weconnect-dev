@@ -12,31 +12,33 @@ import AdminManageUsers from './components/views/admin/ManageUsers';
 import AdminManageServices from './components/views/admin/ManageServices'
 import AgencyDash from './components/views/serviceagency/Dashboard'
 import AgencyAccount from './components/views/serviceagency/account/Account'
+import AgencyServices from './components/views/serviceagency/services/Services'
 import Premium from './components/views/serviceagency/Premium';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-          <div className="App">
-            <div>
-              <Switch>
-                <Route exact path='/' component={Search} />
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Register} />
-                <Route path='/forgotpassword' component={ForgotPassword} />
-                <Route exact path='/serviceagency' component={Search} />
-                <Route path='/serviceagency/login' component={Login} />
-                <Route path='/serviceagency/register' component={Register} />
-                <Route path='/serviceagency/premium' component={Premium} />
-                <Route path='/serviceagency/dashboard' component={AgencyDash} />
-                <Route path='/serviceagency/account' component={AgencyAccount} />
-                <Route exact path='/admin' component={Admin} />
-                <Route path='/admin/users' component={AdminManageUsers} />
-                <Route path='/admin/services' component={AdminManageServices} />
-              </Switch>
-            </div>
+        <div className="App">
+          <div>
+            <Switch>
+              <PrivateRoute exact path='/' component={Search} />
+              <Route path='/login' component={Login} />
+              <Route path='/register' component={Register} />
+              <Route path='/forgotpassword' component={ForgotPassword} />
+              <Route exact path='/serviceagency' component={Search} />
+              <Route path='/serviceagency/login' component={Login} />
+              <Route path='/serviceagency/register' component={Register} />
+              <Route path='/serviceagency/premium' component={Premium} />
+              <Route path='/serviceagency/dashboard' component={AgencyDash} />
+              <Route path='/serviceagency/account' component={AgencyAccount} />
+              <Route path='/serviceagency/services' component={AgencyServices} />
+              <Route exact path='/admin' component={Admin} />
+              <Route path='/admin/users' component={AdminManageUsers} />
+              <Route path='/admin/services' component={AdminManageServices} />
+            </Switch>
           </div>
+        </div>
       </AuthProvider>
     </BrowserRouter>
   );

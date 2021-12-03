@@ -65,7 +65,7 @@ const ManageUsers = () => {
                     <Button onClick={props.onHide}>Close</Button>
                 </Modal.Footer>
             </Modal>
-        );
+        )
     }
 
     function handleClick(id, type) {
@@ -94,7 +94,7 @@ const ManageUsers = () => {
 
                                 {!loading && users.length !== 0 && <div>
                                     <h3> Users </h3>
-                                    <ListGroup className='users-card'>
+                                    <ListGroup className='users-card overflow'>
                                         {users.map((users) => (
                                             <ListGroup.Item key={users.id}>
                                                 <Row>
@@ -109,7 +109,7 @@ const ManageUsers = () => {
                                                                 src={editIcon} alt='editicon' />
                                                         </Button>
                                                     </Col>
-                                                </Row>
+                                                </Row>0
                                                 <Row>
                                                     <Col> {users.email} </Col>
                                                     <Col> {users.userType} </Col>

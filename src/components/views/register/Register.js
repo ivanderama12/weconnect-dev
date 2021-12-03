@@ -14,7 +14,6 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [checked, setChecked] = useState(false)
-   // const [test, setTest] = useState()
 
     const [error, setError] = useState('')
     const [success, setSuccess] = useState(false)
@@ -120,31 +119,10 @@ const Register = () => {
                                         </Form.Label>
                                     </Form.Group>
 
-                                    {/*@@@@@@@@@@ Test Starts here
-
-                                    <Form.Group controlId="formFileSm" className="mb-3">
-                                        <Form.Label>Small file input example</Form.Label>
-                                        <Form.Control
-                                            type="file"
-                                            size="sm"
-                                            onChange={(e) => setTest(e.target.value)}
-                                        />
-                                    </Form.Group>
-
-                                    <div className="d-grid gap-2">
+                                    <div className='d-grid gap-2'>
                                         <Button
-                                            variant="danger"
-                                            onClick={(e)=> console.log(test)}
-                                        >
-                                            Test
-                                        </Button>
-                                    </div>
-                                    this is a test */}
-
-                                    <div className="d-grid gap-2">
-                                        <Button
-                                            variant="danger"
-                                            type="submit"
+                                            variant='danger'
+                                            type='submit'
                                             disabled={loading}
                                         >
                                             Register

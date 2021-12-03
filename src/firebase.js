@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getStorage, ref } from "firebase/storage"
+import { getStorage } from "firebase/storage"
 
-const app = initializeApp({
+export const app = initializeApp({
     apiKey: "AIzaSyD3ZmT30HE47Aw2bvGWwo5dDQN1Cdc54aQ",
     authDomain: "weconnect-dev-de5dc.firebaseapp.com",
     databaseURL: "https://weconnect-dev-de5dc-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -14,4 +14,3 @@ const app = initializeApp({
 
 export const auth = getAuth(app)
 export const storage = getStorage(app)
-export const storageRef = ref(storage)

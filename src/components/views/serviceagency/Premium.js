@@ -68,7 +68,7 @@ const Premium = () => {
                         <div className='mb-5 d-flex justify-content-center'>
                             <div className='p-2 flex-fill'>
                                 <Button
-                                    className='p-4'
+                                    className='p-3'
                                     variant={month}
                                     onClick={monthClick}
                                 >
@@ -77,7 +77,7 @@ const Premium = () => {
                             </div>
                             <div className='p-2 flex-fill'>
                                 <Button
-                                    className='p-4'
+                                    className='p-3'
                                     variant={semi}
                                     onClick={semiClick}
                                 >
@@ -86,7 +86,7 @@ const Premium = () => {
                             </div>
                             <div className='p-2 flex-fill'>
                                 <Button
-                                    className='p-4'
+                                    className='p-3'
                                     variant={year}
                                     onClick={yearClick}
                                 >
