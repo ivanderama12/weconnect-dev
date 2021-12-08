@@ -28,7 +28,7 @@ const CreatePost = () => {
             contentType: file.type
         }
         const filePath = 'images/' + date.getFullYear() + (date.getMonth() + 1) + date.getDay() + date.getHours() + date.getMinutes() + file.name.substring(file.name.length - 10)
-        console.log(filePath)
+
         const storageRef = ref(storage, filePath)
         const uploadTask = uploadBytesResumable(storageRef, file, metadata)
         uploadTask.on('state_changed',
@@ -36,10 +36,8 @@ const CreatePost = () => {
                 setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
                 switch (snapshot.state) {
                     case 'paused':
-                        console.log('Upload is paused')
                         break;
                     case 'running':
-                        console.log('Upload is running')
                         break
                 }
             },
@@ -62,15 +60,14 @@ const CreatePost = () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     setUrl(downloadURL)
                     setLoading(false)
-                });
+                })
             }
-        );
+        )
 
     }
 
-    function handleSubmitClick() {
-        console.log(postTitle, postDetails, postActive, url, date)
-        results.post('/posts/'+currentUser.uid+'/.json', {
+    function handleSubmit() {
+        results.post('/posts/' + currentUser.uid + '/.json', {
             title: postTitle,
             details: postDetails,
             active: postActive,
@@ -85,8 +82,7 @@ const CreatePost = () => {
 
     return (
         <div>
-            {success && <Alert className='mx-3 mt-3 mb-0' variant='success' style={{ fontSize: '14px' }}> Post Success </Alert>}
-            {error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}> {error} </Alert>}
+
             <div className='d-flex justify-content-center'>
                 <Card className='m-3' style={{ width: '800px' }}>
                     <Card.Header className='bg-danger text-white'>
@@ -94,6 +90,8 @@ const CreatePost = () => {
                     </Card.Header>
                     <Card.Body>
                         <Form>
+                            {success && <Alert className='mb-3' variant='success' style={{ fontSize: '14px' }}> Post Success </Alert>}
+                            {error && <Alert className='mb-3' variant='danger' style={{ fontSize: '14px' }}> {error} </Alert>}
                             <Form.Group>
                                 <FloatingLabel className='mb-3' label='Title' >
                                     <Form.Control
@@ -126,7 +124,7 @@ const CreatePost = () => {
                             </Form.Group>
 
                             <div className='d-flex justify-content-end'>
-                                <Button variant='secondary' onClick={handleSubmitClick} disabled={loading}>
+                                <Button variant='secondary' onClick={handleSubmit} disabled={loading}>
                                     Post {'>'}
                                 </Button>
                             </div>
@@ -134,7 +132,7 @@ const CreatePost = () => {
 
                         <div >
                             {loading && <div>
-                                {'Upload is ' + progress + '% done'}
+                                {'Upload is ' + Math.round(progress) + '% done'}
                             </div>}
                             <Image className='create-post-pic' src={url} />
                         </div>

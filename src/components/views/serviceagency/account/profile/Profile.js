@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Row, Image, Card, Alert } from 'react-bootstrap'
-import { useAuth } from '../../../../AuthContext'
-import testPic from '../../../../images/prof-icon1 1.png'
+
+import { Alert, Button, ButtonGroup, Card, Col, Image, Row } from 'react-bootstrap'
+
 import Post from './Post'
-import results from '../../../../results'
+import ViewProfile from './ViewProfile'
+import EditProfile from './EditProfile'
+
+import { useAuth } from '../../../../../AuthContext'
+import results from '../../../../../results'
 
 const Profile = () => {
 
@@ -12,22 +16,22 @@ const Profile = () => {
     const [error, setError] = useState()
     const [posts, setPosts] = useState([])
 
+    const [viewBtnVar, setViewBtnVar] = useState('danger')
+    const [editBtnVar, setEditBtnVar] = useState('secondary')
+
     useEffect(() => {
         setLoading(true)
-
         setError()
         const postList = []
         results.get('/posts/' + currentUser.uid + '/.json')
             .then(function (response) {
                 for (let key in response.data) {
-                    console.log(response.data)
                     postList.unshift(
                         {
                             ...response.data[key],
                             id: key
                         }
                     )
-
                 }
             })
             .catch(function (error) {
@@ -37,31 +41,52 @@ const Profile = () => {
             .then(function () {
                 setLoading(false)
                 setPosts(postList)
-            });
-        console.log(postList)
-    }, []);
+            })
+    }, [])
+
+    function handleButtonClick(button) {
+        setViewBtnVar('secondary')
+        setEditBtnVar('secondary')
+        if (button === 'view')
+            setViewBtnVar('danger')
+        if (button === 'edit')
+            setEditBtnVar('danger')
+    }
 
     return (
         <div>
             <Card className='m-3 p-3'>
-                <h3>My Profile</h3>
                 <Row xs={1} sm={1} md={2}>
                     <Col className='mb-3'>
-                        <div className='d-flex mt-2'>
-                            <div className='profile-pic'>
-                                <Image fluid src={testPic} />
-                            </div>
-                            <div className='ms-3'>
-                                {userDetails.companyName} <br />
-                                {userDetails.userName} <br />
-                                {userDetails.userTitle}
-                            </div>
+                        <div className='d-flex justify-content-between'>
+                            <h2>My Profile</h2>
+                            <ButtonGroup>
+                                <Button
+                                    size='sm'
+                                    variant={viewBtnVar}
+                                    onClick={(e) => handleButtonClick('view')}
+                                >
+                                    View Profile
+                                </Button>
+                                <Button
+                                    size='sm'
+                                    variant={editBtnVar}
+                                    onClick={(e) => handleButtonClick('edit')}
+                                >
+                                    Edit Profile
+                                </Button>
+                            </ButtonGroup>
                         </div>
+                        {viewBtnVar === 'danger' && <div><ViewProfile /></div>}
+                        {editBtnVar === 'danger' && <div><EditProfile /></div>}
                     </Col>
 
                     <Col>
                         {error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
                         <h3 className='mb-3'>News Feed</h3>
+                        {posts.length === 0 && <div>
+                            Your feed is empty
+                        </div>}
                         {!loading && posts.length !== 0 && <div>
                             <div>
                                 {posts.map((post) =>

@@ -5,7 +5,7 @@ import myProfileIcon from '../../../../images/icons/PersonButton.png'
 import myPlanIcon from '../../../../images/icons/MyPlanIcon.svg'
 import createPostIcon from '../../../../images/icons/PenButton.svg'
 
-import Profile from './Profile'
+import Profile from './profile/Profile'
 import Plan from './Plan'
 import CreatePost from './CreatePost'
 import SearchBar from '../../../SearchBar'
@@ -55,7 +55,6 @@ const ManageAccount = () => {
                     </Card>
                 </div>
             </Container>
-
 
             {profileBtnVar === 'danger' && <div><Profile /></div>}
             {planBtnVar === 'danger' && <div><Plan /></div>}

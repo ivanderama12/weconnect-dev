@@ -5,10 +5,9 @@ const EditForm = (props) => {
     const uid = props.uid
     const type = props.type
 
-
-
     const isAgency = props.type === 'serviceagency' ? true : false
     console.log(isAgency)
+    
     return (
         <div>
             {isAgency && <Form>

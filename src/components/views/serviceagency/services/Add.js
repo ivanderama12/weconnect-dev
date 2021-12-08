@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Form, FloatingLabel, Button } from 'react-bootstrap'
+import { Alert, Card, Form, FloatingLabel, Button } from 'react-bootstrap'
 import results from '../../../../results'
 import { useAuth } from '../../../../AuthContext'
 
@@ -7,6 +7,7 @@ const Add = () => {
     const [serviceType, setServiceType] = useState()
     const [availability, setAvailability] = useState()
     const [loading, setLoading] = useState()
+    const [success, setSuccess] = useState(false)
     const { currentUser } = useAuth()
 
     function handleSave(e) {
@@ -17,9 +18,8 @@ const Add = () => {
         results.get('/services.json')
             .then(function (response) {
                 for (let key in response.data) {
-                    console.log(response.data[key].serviceName+': '+ response.data[key][currentUser.uid].availability)
                     if (response.data[key].serviceName === serviceType) {
-                        found = true 
+                        found = true
                         serviceID = key
                         break;
                     }
@@ -30,14 +30,19 @@ const Add = () => {
                         .then(function (response) {
                             serviceID = response.data.name
                         }).finally(function () {
-                            results.put('/services/' + serviceID + '/' + currentUser.uid + '.json', { availability: availability })
                             setLoading(false)
+                            setSuccess(true)
+                            results.put('/services/' + serviceID + '/' + currentUser.uid + '.json', { availability: availability })
+
                         })
                 } else {
-                    results.put('/services/' + serviceID + '/' + currentUser.uid + '.json', { availability: availability })
                     setLoading(false)
+                    setSuccess(true)
+                    results.put('/services/' + serviceID + '/' + currentUser.uid + '.json', { availability: availability })
+
                 }
             })
+        console.log(success)
     }
 
     return (
@@ -48,6 +53,7 @@ const Add = () => {
                         Add Services
                     </Card.Header>
                     <Card.Body>
+                        {success && <Alert className='mx-3 mt-3 mb-0' variant='success' style={{ fontSize: '14px' }}> Service Added Successfuly </Alert>}
                         <Form className='p-3'>
                             <Form.Group>
                                 <FloatingLabel className='mb-3' label='Service Type' >

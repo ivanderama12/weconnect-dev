@@ -13,6 +13,7 @@ import AdminManageServices from './components/views/admin/ManageServices'
 import AgencyDash from './components/views/serviceagency/Dashboard'
 import AgencyAccount from './components/views/serviceagency/account/Account'
 import AgencyServices from './components/views/serviceagency/services/Services'
+import EditService from './components/views/serviceagency/services/Edit'
 import Premium from './components/views/serviceagency/Premium';
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
               <Route path='/serviceagency/premium' component={Premium} />
               <Route path='/serviceagency/dashboard' component={AgencyDash} />
               <Route path='/serviceagency/account' component={AgencyAccount} />
-              <Route path='/serviceagency/services' component={AgencyServices} />
+              <Route exact path='/serviceagency/services' component={AgencyServices} />
+              <Route path='/serviceagency/services/:id' component={EditService} />
               <Route exact path='/admin' component={Admin} />
               <Route path='/admin/users' component={AdminManageUsers} />
               <Route path='/admin/services' component={AdminManageServices} />

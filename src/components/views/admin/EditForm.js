@@ -18,8 +18,9 @@ const EditForm = (props) => {
     useEffect(() => {
         results.get('/users/' + type + '/' + uid + '.json')
             .then(function (response) {
+                console.log(response.data)
                 setUser(response.data)
-                setContactPerson(response.data.contactPerson)
+                setContactPerson(response.data.userName)
                 setCompanyName(response.data.companyName)
                 setEmail(response.data.email)
                 setPremiumExpiry(response.data.premiumExpiry)
@@ -37,6 +38,7 @@ const EditForm = (props) => {
     }
 
     const isAgency = props.type === 'serviceagency' ? true : false
+
     return (
         <div>
             {isAgency && <Form>

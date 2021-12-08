@@ -18,11 +18,13 @@ const AgencyForm = () => {
     const { currentUser, updateprofile } = useAuth()
     const email = currentUser.email
     const uid = currentUser.uid
+    const imageRef = 'https://firebasestorage.googleapis.com/v0/b/weconnect-dev-de5dc.appspot.com/o/images%2Fprof-icon1%201.png?alt=media&token=3882b521-d138-479e-ab70-5d4aa3edae3c'
 
     function handleSubmit(e) {
-
+        setLoading(true)
         e.preventDefault()
         results.put('users/serviceagency/' + uid + '.json', {
+            imageRef: imageRef,
             email: email,
             userName: person,
             userTitle: title,
@@ -32,10 +34,12 @@ const AgencyForm = () => {
             freeTrial: true
         })
             .then(function () {
-                updateprofile(company, null)
+                setLoading(false)
+                updateprofile(company, imageRef)
                 history.push('premium');
             })
             .catch(function (error) {
+                setLoading(false)
                 console.log(error);
             });
     }

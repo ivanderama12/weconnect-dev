@@ -8,7 +8,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
         <Route
             {...rest}
             render={props => {
-                return userType !== 'serviceagency' ? <Component {...props} /> : <Redirect to="/serviceagency" />
+                return userType !== 'serviceagency' ? <Component {...props} /> : <Redirect to="/serviceagency/dashboard" />
             }}
         >
 
