@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Image } from 'react-bootstrap'
 
 const Post = (props) => {
@@ -8,7 +9,7 @@ const Post = (props) => {
     return (
         <div className='d-flex'>
             <div className='me-3 mb-3'>
-                <Image className='post-pic' src={post.imageRef} />
+                <Image style={{maxWidth:'150px'}} fluid className='post-pic' src={post.imageRef} />
             </div>
             <div>
                 <h3>{post.title}</h3>

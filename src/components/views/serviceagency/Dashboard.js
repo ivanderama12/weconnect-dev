@@ -10,7 +10,7 @@ import { useAuth } from '../../../AuthContext'
 
 const Dashboard = () => {
 
-    const { currentUser } = useAuth()
+    const { userDetails } = useAuth()
 
     return (
         <div>
@@ -18,7 +18,7 @@ const Dashboard = () => {
             <SearchBar />
             <Container>
                 <div className='mt-3'>
-                    <h1>Hi {currentUser.displayName}.<br />
+                    <h1>Hi {userDetails.companyName}.<br />
                         Welcome to WeConnect</h1>
                 </div>
                 <div className='d-flex justify-content-center mt-3'>

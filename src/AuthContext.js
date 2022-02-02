@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, updateProfile, updateEmail } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, updateProfile, updateEmail, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
 import { auth } from './firebase'
 import results from './results'
 const AuthContext = React.createContext();
@@ -35,8 +35,17 @@ export function AuthProvider({ children }) {
         })
     }
 
-    function updateemail(email) {
-        return updateEmail(currentUser, email)
+    function updateemail(password) {
+        const credential = EmailAuthProvider.credential(currentUser.email, password)
+        console.log(currentUser.email, '1123123')
+        reauthenticateWithCredential(currentUser, credential).then(() => {
+            return true
+        }).catch(() => {
+            return false
+        })
+        updateEmail(currentUser, 'change@test.com').catch(()=> {
+            console.log()
+        })
     }
 
     function logout() {
@@ -48,12 +57,8 @@ export function AuthProvider({ children }) {
         return setIsAgency(param);
     }
 
-    function getUserAgency(uid) {
-        return results.get('/users/serviceagency/' + uid + '.json')
-    }
-
-    function getUserEstablishment(uid) {
-        return results.get('/users/establishment/' + uid + '.json')
+    function setuserdetails(details) {
+        setUserDetails(details)
     }
 
     useEffect(() => {
@@ -62,7 +67,7 @@ export function AuthProvider({ children }) {
             setLoading(false)
             var details
             if (!details && currentUser)
-                Promise.all([getUserAgency(user.uid), getUserEstablishment(user.uid)])
+                Promise.all([results.get('/users/serviceagency/' + user.uid + '.json'), results.get('/users/establishment/' + user.uid + '.json')])
                     .then(function (results) {
                         const sa = results[0]
                         const est = results[1]
@@ -81,8 +86,6 @@ export function AuthProvider({ children }) {
         return unsubscribe
     }, [currentUser])
 
-
-
     const value = {
         isAgency,
         currentUser,
@@ -90,6 +93,7 @@ export function AuthProvider({ children }) {
         userType,
         updateemail,
         setisagency,
+        setuserdetails,
         signup,
         login,
         logout,

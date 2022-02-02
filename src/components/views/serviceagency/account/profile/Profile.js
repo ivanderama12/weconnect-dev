@@ -42,7 +42,7 @@ const Profile = () => {
                 setLoading(false)
                 setPosts(postList)
             })
-    }, [])
+    }, [currentUser.uid])
 
     function handleButtonClick(button) {
         setViewBtnVar('secondary')
@@ -56,7 +56,7 @@ const Profile = () => {
     return (
         <div>
             <Card className='m-3 p-3'>
-                <Row xs={1} sm={1} md={2}>
+                <Row xs={1} sm={1} md={1} lg={2}>
                     <Col className='mb-3'>
                         <div className='d-flex justify-content-between'>
                             <h2>My Profile</h2>

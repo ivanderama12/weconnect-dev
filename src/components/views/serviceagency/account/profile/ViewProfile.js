@@ -35,7 +35,7 @@ const ViewProfile = () => {
                 setLoading(false)
                 setServices(serviceList)
             })
-    }, [])
+    }, [currentUser.uid])
 
     return (
         <div>

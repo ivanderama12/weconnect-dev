@@ -8,9 +8,10 @@ import results from '../../../../../results'
 
 const EditForm = () => {
 
-    const { currentUser, userDetails, updateprofile, updateemail } = useAuth()
+    const { currentUser, userDetails, updateprofile, updateemail, setuserdetails } = useAuth()
 
-    const [contactPerson, setContactPerson] = useState(userDetails.userName)
+    const [userName, setUserName] = useState(userDetails.userName)
+    const [userTitle, setUserTitle] = useState(userDetails.userTitle)
     const [companyName, setCompanyName] = useState(userDetails.companyName)
     const [email, setEmail] = useState(userDetails.email)
     const [url, setUrl] = useState(userDetails.imageRef)
@@ -63,6 +64,7 @@ const EditForm = () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         setUrl(downloadURL)
                         setLoading(false)
+                        console.log(url, file)
                     })
                 }
             )
@@ -70,19 +72,48 @@ const EditForm = () => {
     }
 
     function handleSubmit() {
+        console.log(updateemail('123123'))
+    }
+
+    async function handleSubmit() {
         setSuccess(false)
-        console.log(contactPerson, companyName, url)
+        var errorCheck = false
+        console.log(currentUser)
         if (email !== userDetails.email) {
-
+            console.log(email, 'emailchange')
+            try {
+                await updateemail(email)
+            } catch {
+                setError('Something went wrong')
+                errorCheck = true
+            }
         }
-        console.log(url !== userDetails.imageRef || companyName !== userDetails.companyName)
-        // results.put('/users/serviceagency/' + currentUser.uid + '/.json', {
 
-        // }).catch(function () {
-        //     setError('Database Error')
-        // }).then(function () {
-        //     setSuccess(true)
-        // })
+        if (url !== userDetails.imageRef || companyName !== userDetails.companyName) {
+            try {
+                console.log('picchange')
+                await updateprofile(companyName, url)
+            } catch {
+                setError('Something went wrong')
+                errorCheck = true
+            }
+        }
+
+        if (!errorCheck) {
+            results.patch('/users/serviceagency/' + currentUser.uid + '/.json', {
+                ...userDetails,
+                companyName: companyName,
+                email: email,
+                userName: userName,
+                userTitle: userTitle,
+                imageRef: url
+            }).catch(function () {
+                setError('Database Error')
+            }).then(function (response) {
+                setuserdetails(response.data)
+                setSuccess(true)
+            })
+        }
     }
 
     return (
@@ -108,23 +139,6 @@ const EditForm = () => {
                     </div>
                 </div>
 
-
-
-                <Form.Group>
-                    <FloatingLabel
-                        label="Contact Person"
-                        className="mb-3"
-                    >
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="Contact Person"
-                            value={contactPerson}
-                            onChange={(e) => setContactPerson(e.target.value)}
-                        />
-                    </FloatingLabel >
-                </Form.Group>
-
                 <Form.Group >
                     <FloatingLabel
                         label="Company Name"
@@ -135,6 +149,36 @@ const EditForm = () => {
                             placeholder="Company Name"
                             value={companyName}
                             onChange={(e) => setCompanyName(e.target.value)}
+                        />
+                    </FloatingLabel >
+                </Form.Group>
+
+                <Form.Group>
+                    <FloatingLabel
+                        label="Contact Person"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Contact Person"
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                        />
+                    </FloatingLabel >
+                </Form.Group>
+
+                <Form.Group>
+                    <FloatingLabel
+                        label="Contact Person"
+                        className="mb-3"
+                    >
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Title"
+                            value={userTitle}
+                            onChange={(e) => setUserTitle(e.target.value)}
                         />
                     </FloatingLabel >
                 </Form.Group>

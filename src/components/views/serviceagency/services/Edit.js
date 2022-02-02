@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Form, FloatingLabel, Button } from 'react-bootstrap'
+import { Alert, Card, Form, FloatingLabel, Button } from 'react-bootstrap'
 import results from '../../../../results'
 import { useAuth } from '../../../../AuthContext'
 
@@ -10,7 +10,7 @@ const Edit = () => {
     const [ID, setID] = useState()
 
     const [error, setError] = useState()
-    const [loading, setLoading] = useState()
+    const [success, setSuccess] = useState()
     const [hasSelected, setHasSelected] = useState(false)
     const [services, setServices] = useState([])
 
@@ -30,13 +30,11 @@ const Edit = () => {
                     }
                 }
             }).catch(function (error) {
-                setLoading(false)
                 setError('Database Error')
             })
             .then(function () {
-                setLoading(false)
                 setServices(serviceList)
-            });
+            })
     }, [currentUser.uid, services])
 
     function handleChange(e) {
@@ -58,6 +56,11 @@ const Edit = () => {
     function handleSave(e) {
         e.preventDefault()
         results.put('/services/' + ID + '/' + currentUser.uid + '/.json', { availability: availability })
+            .then(() => {
+                setSuccess(true)
+            }).catch(() => {
+                setError('Something Went Wrong')
+            })
     }
 
     return (
@@ -68,6 +71,8 @@ const Edit = () => {
                         Edit Services
                     </Card.Header>
                     <Card.Body>
+                        {error && <Alert className='mb-0' variant='danger' style={{ fontSize: '14px' }}> {error} </Alert>}
+                        {success && !error && <Alert className='mb-0' variant='success' style={{ fontSize: '14px' }}> Edit Success </Alert>}
                         <Form className='p-3'>
                             <Form.Select aria-label="Default select example" onChange={handleChange}>
                                 <option value='default'>Select Service Type</option>

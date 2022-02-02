@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import Navbar from '../../../navbar/Navbar'
 import { Card, Button, Image, Container } from 'react-bootstrap'
 import myProfileIcon from '../../../../images/icons/PersonButton.png'
 import myPlanIcon from '../../../../images/icons/MyPlanIcon.svg'
 import createPostIcon from '../../../../images/icons/PenButton.svg'
 
+import Navbar from '../../../navbar/Navbar'
+import SearchBar from '../../../SearchBar'
+
 import Profile from './profile/Profile'
 import Plan from './Plan'
 import CreatePost from './CreatePost'
-import SearchBar from '../../../SearchBar'
 
 const ManageAccount = () => {
 
