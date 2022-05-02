@@ -30,7 +30,7 @@ const EstablishmentForm = () => {
             contactNumber: number
         })
             .then(function () {
-                history.push('/');
+                history.push('/dashboard');
             })
             .catch(function (error) {
                 console.log(error);

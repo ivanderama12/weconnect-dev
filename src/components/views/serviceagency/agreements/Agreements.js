@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Card, Button, Image, Container } from 'react-bootstrap'
 
 import viewIcon from '../../../../images/icons/ViewButton.png'
-import myPlanIcon from '../../../../images/icons/MyPlanIcon.svg'
+import contactIcon from '../../../../images/icons/ContactIcon.png'
 
 import Navbar from '../../../navbar/Navbar'
 import SearchBar from '../../../SearchBar'
 
 import View from './View'
+import Messages from './Messages'
 
 const Agreements = () => {
 
@@ -50,7 +51,7 @@ const Agreements = () => {
                                     className='menu-button-account mx-'
                                     style={{ fontSize: '12px' }}
                                 >
-                                    <Image className='button-art' src={myPlanIcon}></Image>
+                                    <Image className='button-art' src={contactIcon}></Image>
                                     Contact Establishment
                                 </Button>
                             </div>
@@ -59,7 +60,7 @@ const Agreements = () => {
                 </Container>
 
                 {viewBtnVar === 'danger' && <div><View /></div>}
-                {/* {planBtnVar === 'danger' && <div><Plan /></div>} */}
+                {planBtnVar === 'danger' && <div><Messages /></div>}
 
             </div>
         </div>

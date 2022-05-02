@@ -38,7 +38,7 @@ const Login = () => {
         } else {
             try {
                 await login(email, password)
-                isAgency ? history.push('/serviceagency/dashboard') : history.push('/')
+                isAgency ? history.push('/serviceagency/dashboard') : history.push('/dashboard')
             } catch {
                 setError('Failed to log in');
             }

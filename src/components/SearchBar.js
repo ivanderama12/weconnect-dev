@@ -5,7 +5,7 @@ const SearchBar = () => {
     const [search, setSearch] = useState('');
 
     return (
-        <div className="bg-red-gradient p-3" >
+        <div style={{marginTop:'74px'}}className="bg-red-gradient p-3" >
             <Container className='d-flex justify-content-center' style={{ gap: '10px' }}>
                 <Form className='w-75'>
                     <Form.Group controlId="searchBar">

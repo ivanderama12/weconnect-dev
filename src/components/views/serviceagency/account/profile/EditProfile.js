@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, FloatingLabel, Image } from 'react-bootstrap'
+import { Form, Button, FloatingLabel, Image, Alert } from 'react-bootstrap'
 import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage'
 import { storage } from '../../../../../firebase'
 
@@ -18,6 +18,8 @@ const EditForm = () => {
 
     const [progress, setProgress] = useState()
     const [loading, setLoading] = useState(false)
+    const [password, setPassword] = useState()
+    const [confirmPassword, setConfirmPassword] = useState()
     const [error, setError] = useState()
     const [success, setSuccess] = useState(false)
 
@@ -75,10 +77,21 @@ const EditForm = () => {
         console.log(updateemail('123123'))
     }
 
-    async function handleSubmit() {
+    function handleSubmit() {
         setSuccess(false)
-        var errorCheck = false
+        setError()
         console.log(currentUser)
+        if (!password) {
+            submit()
+        } else {
+            if (password !== confirmPassword) {
+                setError('Passwords do not match')
+            }
+        }
+    }
+
+    async function submit() {
+        var errorCheck = false
         if (email !== userDetails.email) {
             console.log(email, 'emailchange')
             try {
@@ -139,6 +152,10 @@ const EditForm = () => {
                     </div>
                 </div>
 
+                {error && <Alert variant='danger'>{error}</Alert>}
+                {success && <Alert variant='success'>wohoo</Alert>}
+
+
                 <Form.Group >
                     <FloatingLabel
                         label="Company Name"
@@ -197,11 +214,37 @@ const EditForm = () => {
                     </FloatingLabel>
                 </Form.Group>
 
+                <Form.Group>
+                    <FloatingLabel
+                        label="Password"
+                        className="mb-3" >
+                        <Form.Control
+                            required
+                            type="password"
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </FloatingLabel>
+                </Form.Group>
+
+                <Form.Group>
+                    <FloatingLabel
+                        label="Confirm Password"
+                        className="mb-3" >
+                        <Form.Control
+                            required
+                            type="password"
+                            placeholder="Confirm Password"
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                    </FloatingLabel>
+                </Form.Group>
+
                 <div className="d-grid gap-2" >
                     <Button variant="success"
-                        // type="submit"
                         disabled={loading}
-                        onClick={handleSubmit} >
+                        onClick={handleSubmit} 
+                        >
                         Save
                     </Button>
                 </div>

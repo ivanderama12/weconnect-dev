@@ -29,7 +29,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <NavB className="px-3" bg="light" expand="md">
+            <NavB fixed='top' className="px-3" bg="light" expand="md">
                 <NavB.Brand as={Link} to={isAgency || userType === 'serviceagency' ? "/serviceagency/dashboard" : "/"}>
                     <img src={logo} alt='weconnect-logo' />
                 </NavB.Brand>

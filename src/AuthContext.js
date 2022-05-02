@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, updateProfile, updateEmail, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, updateProfile, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 import { auth } from './firebase'
 import results from './results'
 const AuthContext = React.createContext();
@@ -37,15 +37,18 @@ export function AuthProvider({ children }) {
 
     function updateemail(password) {
         const credential = EmailAuthProvider.credential(currentUser.email, password)
-        console.log(currentUser.email, '1123123')
         reauthenticateWithCredential(currentUser, credential).then(() => {
             return true
         }).catch(() => {
             return false
         })
-        updateEmail(currentUser, 'change@test.com').catch(()=> {
+        updateEmail(currentUser, 'change@test.com').catch(() => {
             console.log()
         })
+    }
+
+    function updatepassword(password) {
+        return updatePassword(currentUser, password)
     }
 
     function logout() {

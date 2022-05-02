@@ -23,10 +23,11 @@ const Plan = () => {
                     <Card.Body>
                         <div className='d-flex justify-content-between'>
                             <div>
-                                {userDetails.premiumExpiry === 0 ? 'Free Trial' : 'Premium'}
+                                {/* {userDetails.premiumExpiry === 0 ? 'Free Trial' : 'Premium'} */}
+                                TODO
                             </div>
                             <div>
-                                also this
+                                TODO
                             </div>
                         </div>
                     </Card.Body>
