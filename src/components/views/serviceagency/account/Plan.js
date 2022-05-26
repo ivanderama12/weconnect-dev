@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import { useAuth } from '../../../../AuthContext'
+import Expired from '../Expired'
 
 const Plan = () => {
 
@@ -13,6 +14,14 @@ const Plan = () => {
         history.push('/serviceagency/premium')
     }
 
+    function getStatus() {
+        const expiry = (~~Math.abs((new Date() - new Date(userDetails.premiumExpiry))/(1000*60*60*24)))
+        return (<div className='d-flex justify-content-between'>
+            <div>{userDetails.accountStatus}</div>
+            {userDetails.accountStatus !== 'Expired' && <div>{expiry} days</div>}
+        </div>)
+    }
+
     return (
         <div >
             <div className='d-flex justify-content-center'>
@@ -21,15 +30,7 @@ const Plan = () => {
                         Current Plan
                     </Card.Header>
                     <Card.Body>
-                        <div className='d-flex justify-content-between'>
-                            <div>
-                                {/* {userDetails.premiumExpiry === 0 ? 'Free Trial' : 'Premium'} */}
-                                TODO
-                            </div>
-                            <div>
-                                TODO
-                            </div>
-                        </div>
+                        {getStatus()}
                     </Card.Body>
                 </Card>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button, Image, Container } from 'react-bootstrap'
+import { Card, Button, Image, Container, Modal } from 'react-bootstrap'
 import myProfileIcon from '../../../../images/icons/PersonButton.png'
 import myPlanIcon from '../../../../images/icons/MyPlanIcon.svg'
 import createPostIcon from '../../../../images/icons/PenButton.svg'
@@ -10,12 +10,17 @@ import SearchBar from '../../../SearchBar'
 import Profile from './profile/Profile'
 import Plan from './Plan'
 import CreatePost from './CreatePost'
+import Expired from '../Expired'
+import PremiumModal from '../PremiumModal'
+import { useAuth } from '../../../../AuthContext'
 
 const ManageAccount = () => {
 
+    const { userDetails } = useAuth()
     const [profileBtnVar, setProfileBtnVar] = useState('danger')
     const [planBtnVar, setPlanBtnVar] = useState('light')
     const [postBtnVar, setPostBtnVar] = useState('light')
+    const [modalShow, setModalShow] = useState(false)
 
     function handleButtonClick(button) {
 
@@ -27,14 +32,21 @@ const ManageAccount = () => {
             setProfileBtnVar('danger')
         if (button === 'myplan')
             setPlanBtnVar('danger')
-        if (button === 'post')
-            setPostBtnVar('danger')
+        if (button === 'post') {
+            if (userDetails.accountStatus === "Expired") {
+                setProfileBtnVar('danger')
+                setModalShow(true)
+            } else {
+                setPostBtnVar('danger')
+            }
+        }
     }
 
     return (
         <div>
             <Navbar />
             <SearchBar />
+            <Expired />
             <Container className='mt-3  '>
                 <h2>My Account</h2>
                 <div className='d-flex justify-content-center mt-3'>
@@ -60,6 +72,11 @@ const ManageAccount = () => {
             {profileBtnVar === 'danger' && <div><Profile /></div>}
             {planBtnVar === 'danger' && <div><Plan /></div>}
             {postBtnVar === 'danger' && <div><CreatePost /></div>}
+
+            <PremiumModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
 
         </div>
     )

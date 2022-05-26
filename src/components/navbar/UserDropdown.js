@@ -11,7 +11,7 @@ import logouticon from '../../images/icons/LogoutIcon.svg'
 
 const UserDropdown = () => {
 
-    const { logout, setisagency, userDetails, currentUser, userType } = useAuth()
+    const { logout, setisagency, userDetails, userType } = useAuth()
     const history = useHistory()
     const type = userType === 'establishment' ? '/' : '/serviceagency/'
 

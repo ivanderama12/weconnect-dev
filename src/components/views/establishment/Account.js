@@ -18,7 +18,16 @@ const Account = () => {
     const [companyName, setCompanyName] = useState(userDetails.companyName)
 
     const [loading, setLoading] = useState(false)
-    const [edit, setEdit] = useState(true)
+    const [disableEdit, setDisableEdit] = useState(true)
+
+    function handleEditClick() {
+        setDisableEdit(!disableEdit)
+        console.log(disableEdit)
+    }
+
+    function handleSubmit() {
+
+    }
 
     return (
         <div>
@@ -31,9 +40,9 @@ const Account = () => {
                         <div>
                             <h1 className='text-center'>My Profile</h1>
                             <Card className='text-center p-3 ms-3'>
-                                <Image className='rounded mx-auto d-block profile-pic' fluid src={userDetails.imageRef} />
+                                {userDetails.imageRef && <Image className='rounded mx-auto d-block profile-pic' fluid src={userDetails.imageRef} />}
                                 <div className='d-flex justify-content-end'>
-                                    <Button size='sm' variant='light'>
+                                    <Button size='sm' variant='light' onClick={handleEditClick}>
                                         <Image className='edit-button' src={EditIcon} /> Edit
                                     </Button>
                                 </div>
@@ -43,7 +52,7 @@ const Account = () => {
                                         <FloatingLabel className="mb-2" label="User Name" >
                                             <Form.Control
                                                 required
-                                                disabled={edit}
+                                                disabled={disableEdit}
                                                 value={userName}
                                                 type="text"
                                                 placeholder="User Name"
@@ -56,7 +65,7 @@ const Account = () => {
                                         <FloatingLabel className="mb-2" label="Email Address" >
                                             <Form.Control
                                                 required
-                                                disabled={edit}
+                                                disabled={disableEdit}
                                                 value={email}
                                                 type="email"
                                                 placeholder="Email Address"
@@ -69,7 +78,7 @@ const Account = () => {
                                         <FloatingLabel className="mb-2" label="Position/Title" >
                                             <Form.Control
                                                 required
-                                                disabled={edit}
+                                                disabled={disableEdit}
                                                 value={userTitle}
                                                 type="text"
                                                 placeholder="Position/Title"
@@ -82,7 +91,7 @@ const Account = () => {
                                         <FloatingLabel className="mb-2" label="Contact Number" >
                                             <Form.Control
                                                 required
-                                                disabled={edit}
+                                                disabled={disableEdit}
                                                 value={contactNumber}
                                                 type="text"
                                                 placeholder="ContactNumber"
@@ -95,7 +104,7 @@ const Account = () => {
                                         <FloatingLabel className="mb-2" label="Company Name" >
                                             <Form.Control
                                                 required
-                                                disabled={edit}
+                                                disabled={disableEdit}
                                                 value={companyName}
                                                 type="text"
                                                 placeholder="Company Name"
@@ -104,37 +113,13 @@ const Account = () => {
                                         </FloatingLabel>
                                     </Form.Group>
 
-                                    <Form.Group>
-                                        <FloatingLabel className="mb-2" label="Password" >
-                                            <Form.Control
-                                                required
-                                                disabled={edit}
-                                                value={companyName}
-                                                type="passWord"
-                                                placeholder="Company Name"
-                                                // onChange={(e) => setCompanyName(e.target.value)}
-                                            />
-                                        </FloatingLabel>
-                                    </Form.Group>
-
-                                    <Form.Group>
-                                        <FloatingLabel className="mb-3" label="Confirm Password" >
-                                            <Form.Control
-                                                required
-                                                disabled={edit}
-                                                type="password"
-                                                placeholder="Company Name"
-                                                // onChange={(e) => setCompanyName(e.target.value)}
-                                            />
-                                        </FloatingLabel>
-                                    </Form.Group>
 
                                     <div className="d-grid gap-2">
                                         <Button
-                                            variant="danger"
+                                            variant="success"
                                             type="submit"
-                                            disabled={(!loading && edit)}
-                                            // onClick={handleSubmit}
+                                            disabled={(!loading && disableEdit)}
+                                            onClick={handleSubmit}
                                         >
                                             Save
                                         </Button>

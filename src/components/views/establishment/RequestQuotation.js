@@ -24,8 +24,9 @@ const RequestQuotation = () => {
     const [loading, setLoading] = useState(false)
 
     const [progress, setProgress] = useState()
+    const [description, setDescription] = useState()
     const [url, setUrl] = useState()
-    const [success, setSuccess] = useState(false)
+    const [path, setPath] = useState(false)
     const date = new Date()
 
     const [title, setTitle] = useState()
@@ -44,8 +45,7 @@ const RequestQuotation = () => {
 
     function handleUpload(file) {
         setLoading(true)
-        const filePath = 'documents/' + date.getFullYear() + (date.getMonth() + 1) + date.getDay() + date.getHours() + date.getMinutes() + file.name.substring(file.name.length - 10)
-
+        const filePath = 'documents/' + date.getFullYear() + (date.getMonth() + 1) + date.getDay() + date.getHours() + date.getMinutes() + file.name
         const storageRef = ref(storage, filePath)
         const uploadTask = uploadBytesResumable(storageRef, file)
         uploadTask.on('state_changed',
@@ -76,6 +76,7 @@ const RequestQuotation = () => {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     setUrl(downloadURL)
+                    setPath(filePath)
                     setLoading(false)
                 })
             }
@@ -83,13 +84,34 @@ const RequestQuotation = () => {
     }
 
     function handleSubmit() {
-        // results.post('/agreement/.json', {
-        //     date: date
-        // }).catch(function () {
-        //     setError('Database Error')
-        // }).then(function () {
-        //     setSuccess(true)
-        // })
+        const agreement = {
+            agency: id,
+            establishment: currentUser.uid,
+        }
+
+        results.post('/agreements/.json', agreement)
+            .then(function (response) {
+                const document = {
+                    fileName: path,
+                    agreementID: response.data.name,
+                    contentRef: url,
+                    contentText: description,
+                    dateTime: new Date(),
+                    title: title,
+                    type: 'quotation',
+                    senderID: currentUser.uid
+                }
+                results.post('agreements/' + response.data.name + '/documents/.json', document)
+                    .catch(function () {
+                        setError('Database Erorr')
+                    })
+            })
+            .catch(function () {
+                setError('Database Error')
+            })
+            .then(function () {
+                history.push('/agreements')
+            })
     }
 
     return (
@@ -119,6 +141,7 @@ const RequestQuotation = () => {
                                         as="textarea"
                                         rows={5}
                                         placeholder="Description"
+                                        onChange={(e) => setDescription(e.target.value)}
                                     />
                                 </Form.Group>
 
@@ -127,8 +150,15 @@ const RequestQuotation = () => {
                                     <Form.Control type="file" onChange={(e) => handleUpload(e.target.files[0])} />
                                 </Form.Group>
 
-                                <div className='d-flex justify-content-end'>
-                                    <Button variant='light' onClick={(e) => history.push('/agreements')} >
+                                <div className='d-flex justify-content-between'>
+
+                                    {<div>{progress === 100 ? 'Upload Success' : 'Uploading'}</div>}
+
+                                    <Button
+                                        disabled={!title || !url || loading}
+                                        variant='danger'
+                                        onClick={handleSubmit}
+                                    >
                                         Send {'>'}
                                     </Button>
                                 </div>

@@ -74,20 +74,16 @@ const EditForm = () => {
     }
 
     function handleSubmit() {
-        console.log(updateemail('123123'))
-    }
-
-    function handleSubmit() {
-        setSuccess(false)
-        setError()
-        console.log(currentUser)
-        if (!password) {
-            submit()
-        } else {
-            if (password !== confirmPassword) {
-                setError('Passwords do not match')
-            }
-        }
+        // setSuccess(false)
+        // setError()
+        // console.log(currentUser)
+        // if (!password) {
+        //     submit()
+        // } else {
+        //     if (password !== confirmPassword) {
+        //         setError('Passwords do not match')
+        //     }-
+        // }
     }
 
     async function submit() {

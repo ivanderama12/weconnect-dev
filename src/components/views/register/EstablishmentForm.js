@@ -15,13 +15,13 @@ const EstablishmentForm = () => {
 
     const [loading, setLoading] = useState()
 
-    const { currentUser } = useAuth()
+    const { currentUser, setuserdetails } = useAuth()
     const email = currentUser.email
     const uid = currentUser.uid
 
     function handleSubmit(e) {
-
         e.preventDefault()
+        setLoading(true)
         results.put('users/establishment/' + uid + '.json', {
             email: email,
             userName: person,
@@ -30,9 +30,18 @@ const EstablishmentForm = () => {
             contactNumber: number
         })
             .then(function () {
+                setuserdetails({
+                    email: email,
+                    userName: person,
+                    userTitle: title,
+                    companyName: company,
+                    contactNumber: number
+                })
+                setLoading(false)
                 history.push('/dashboard');
             })
             .catch(function (error) {
+                setLoading(false)
                 console.log(error);
             })
     }

@@ -8,12 +8,12 @@ import EditForm from './EditForm'
 
 const ManageUsers = () => {
 
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState();
-    const [error, setError] = useState();
-    const [modalShow, setModalShow] = useState(false);
-    const [ID, setID] = useState();
-    const [type, setType] = useState();
+    const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState()
+    const [error, setError] = useState()
+    const [modalShow, setModalShow] = useState(false)
+    const [ID, setID] = useState()
+    const [type, setType] = useState()
 
     useEffect(() => {
         setLoading(true)
@@ -109,7 +109,7 @@ const ManageUsers = () => {
                                                                 src={editIcon} alt='editicon' />
                                                         </Button>
                                                     </Col>
-                                                </Row>0
+                                                </Row>
                                                 <Row>
                                                     <Col> {users.email} </Col>
                                                     <Col> {users.userType} </Col>

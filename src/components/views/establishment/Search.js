@@ -34,21 +34,19 @@ const Search = () => {
                 console.log(error)
             }).then(function () {
                 setLoading(false)
-                console.log(userList)
                 setUsers(userList)
-
                 console.log(users)
             })
     }, [])
 
     function handleClick(key) {
-        history.push('/agency/'+key);
+        history.push('/agency/' + key);
     }
 
     return (
         <div>
             <Navbar />
-            <div style={{ marginTop: '74px' }} className="bg-red-gradient p-3" >
+            <div className="bg-red-gradient p-3 py-2" >
                 <Container
                     className='d-flex justify-content-center'
                     style={{ gap: '10px' }}>
@@ -66,19 +64,33 @@ const Search = () => {
             <Menu />
             <Container className="mt-3">
 
+
                 {!loading && users.length !== 0 && <div>
-                    <Card className='p-3'>
-                        {users.map((user) =>
-                            <Button
-                                onClick={(e) => handleClick(user.key)}
-                                className='p-3 my-2'>
-                                {user.companyName}
-                            </Button>
-                        )}
+                    <Card className='m-3'>
+                        <Card.Header>
+                            <h3>Top Agencies</h3>
+                        </Card.Header>
+                        <Card.Body>
+                            <div className='d-flex' style={{gap:'5px'}}>
+                                {users.map((user) =>
+                                    <Card
+                                        style={{ width: '7rem' }}
+                                        variant='outline-secondary'
+                                        onClick={(e) => handleClick(user.key)}
+                                        className=''>
+                                        <Card.Img src={user.imageRef} className='p-3' fluid/>
+                                        <Card.Body className='px-1'>
+                                            {user.companyName}
+                                        </Card.Body>
+                                    </Card>
+                                )}
+                            </div>
+                        </Card.Body>
                     </Card>
                 </div>}
-            </Container>
-        </div>
+
+            </Container >
+        </div >
     )
 }
 

@@ -90,5 +90,10 @@
 
 .agreements-profile-pic {
     height: 50px;
-    width: auto
+    width: auto;
+}
+
+.profile-card-img {
+    height: 60px;
+    width: auto;
 }

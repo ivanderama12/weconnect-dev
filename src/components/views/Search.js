@@ -18,7 +18,7 @@ const Search = () => {
         <div>
             <Navbar />
             <SearchBar />
-            <div className='mt-3'>
+            <div>
                 {!searchFound && <div className='d-flex justify-content-end align-items-center'>
                     <Image style={{ width: '40%' }} src={Art} fluid />
                 </div>}

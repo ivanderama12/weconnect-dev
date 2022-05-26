@@ -10,6 +10,7 @@ import View from './View'
 import addIcon from '../../../../images/icons/PersonButton.png'
 import editIcon from '../../../../images/icons/PenButton.svg'
 import viewIcon from '../../../../images/icons/ViewButton.png'
+import Expired from '../Expired'
 
 const Services = () => {
 
@@ -35,6 +36,7 @@ const Services = () => {
         <div>
             <Navbar />
             <SearchBar />
+            <Expired />
             <Container className='mt-3  '>
                 <h2>My Account</h2>
                 <div className='d-flex justify-content-center mt-3'>

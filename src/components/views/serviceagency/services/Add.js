@@ -70,7 +70,7 @@ const Add = () => {
                                     <Form.Control
                                         placeholder='Availability'
                                         required
-                                        type='text'
+                                        type='number'
                                         onChange={(e) => setAvailability(e.target.value)}
                                     />
                                 </FloatingLabel>
@@ -81,7 +81,7 @@ const Add = () => {
                                     type='submit'
                                     style={{ minWidth: '150px' }}
                                     onClick={handleSave}
-                                    disabled={loading}
+                                    disabled={!serviceType || !availability}
                                 >
                                     Save
                                 </Button>

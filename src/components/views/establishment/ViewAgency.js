@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Alert, Button, Container, Col, Image, Row } from 'react-bootstrap'
+import { Card, Alert, Button, Container, Col, Image, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 
 import Navbar from '../../navbar/Navbar'
@@ -79,7 +79,7 @@ const ViewAgency = () => {
     }, [id])
 
     function handleClick() {
-        history.push('/agency/'+id+'/request');
+        history.push('/agency/' + id + '/request');
     }
 
     return (
@@ -117,6 +117,11 @@ const ViewAgency = () => {
                                 )}
                             </div>
 
+                            <div>
+                                <h3>Users also searched</h3>
+                                <span className='text-uppercase'>to do this shit</span>
+                            </div>
+
 
 
                         </Col>
@@ -127,18 +132,21 @@ const ViewAgency = () => {
                                     Request Quotation
                                 </Button>
                             </div>
-                            {error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
                             <h3 className='mb-3'>News Feed</h3>
-                            {posts.length === 0 && <div>
-                                Feed is empty
-                            </div>}
-                            {!loading && posts.length !== 0 && <div>
-                                <div>
-                                    {posts.map((post) =>
-                                        <Post key={post.id} post={post} />
-                                    )}
-                                </div>
-                            </div>}
+                            <div className='overflow-auto' style={{ height: '75vh' }}>
+                                {error && <Alert className='mx-3 mt-3 mb-0' variant='danger' style={{ fontSize: '14px' }}>{error} </Alert>}
+
+                                {posts.length === 0 && <div>
+                                    Feed is empty
+                                </div>}
+                                {!loading && posts.length !== 0 && <div>
+                                    <div>
+                                        {posts.map((post) =>
+                                            <Post key={post.id} post={post} />
+                                        )}
+                                    </div>
+                                </div>}
+                            </div>
                         </Col>
                     </Row>
                 </Container>

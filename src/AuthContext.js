@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const [isAgency, setIsAgency] = useState(false)
-    const [userDetails, setUserDetails] = useState({})
+    const [userDetails, setUserDetails] = useState()
     const [userType, setUserType] = useState()
 
     function signup(email, password) {
@@ -70,7 +70,11 @@ export function AuthProvider({ children }) {
             setLoading(false)
             var details
             if (!details && currentUser)
-                Promise.all([results.get('/users/serviceagency/' + user.uid + '.json'), results.get('/users/establishment/' + user.uid + '.json')])
+                Promise.all(
+                    [
+                        results.get('/users/serviceagency/' + user.uid + '.json'),
+                        results.get('/users/establishment/' + user.uid + '.json')
+                    ])
                     .then(function (results) {
                         const sa = results[0]
                         const est = results[1]

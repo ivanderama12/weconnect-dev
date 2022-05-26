@@ -31,7 +31,6 @@ const ForgotPassword = () => {
     return (
         <div>
             <Navbar />
-            <SearchBar />
             <Container className='mt-3'>
                 <Row>
                     <Col>

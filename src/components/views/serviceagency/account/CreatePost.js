@@ -103,9 +103,9 @@ const CreatePost = () => {
                             </Form.Group>
                             <Form.Group className='mb-2' controlId='exampleForm.ControlTextarea1'>
                                 <Form.Control
-                                    as='textarea'
-                                    rows={3}
-                                    placeholder='Description'
+                                        as='textarea'
+                                        rows={3}
+                                        placeholder='Description'
                                     onChange={(e) => setPostDetails(e.target.value)}
                                 />
                             </Form.Group>
@@ -124,7 +124,7 @@ const CreatePost = () => {
                             </Form.Group>
 
                             <div className='d-flex justify-content-end'>
-                                <Button variant='secondary' onClick={handleSubmit} disabled={loading}>
+                                <Button variant='secondary' onClick={handleSubmit} disabled={loading || (!postTitle && !postDetails)}>
                                     Post {'>'}
                                 </Button>
                             </div>

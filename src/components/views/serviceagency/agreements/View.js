@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Card, Col, Container, Row, Image } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
@@ -12,7 +12,7 @@ const View = () => {
     return (
         <div>
             <Container>
-                <Row xs={1} sm={2} md={2}>
+                <Row xs={1} sm={1} md={1} lg={2} xl={2}>
                     <Col lg={4}>
                         <Card className='m-3'>
                             <h4 className='m-3'>List of Agreements</h4>

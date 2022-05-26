@@ -20,17 +20,25 @@ const Navbar = () => {
     function handleButtonClick() {
         if (!isServiceAgency) {
             setisagency(true)
-            history.push('/serviceagency')
+            history.push('/serviceagency/login')
         } else {
             setisagency(false)
             history.push('/')
         }
     }
 
+    function getLink() {
+        if (!userType) {
+            return isAgency ? '/serviceagency/login' : '/'
+        } else {
+            return userType === 'serviceagency' ? "/serviceagency/dashboard" : "/dashboard"
+        }
+    }
+
     return (
         <div>
-            <NavB fixed='top' className="px-3" bg="light" expand="md">
-                <NavB.Brand as={Link} to={isAgency || userType === 'serviceagency' ? "/serviceagency/dashboard" : "/"}>
+            <NavB className="px-2 py-1" bg="light" expand="md" >
+                <NavB.Brand as={Link} to={getLink()}>
                     <img src={logo} alt='weconnect-logo' />
                 </NavB.Brand>
                 <NavB.Toggle aria-controls="basic-navbar-nav" />
@@ -48,7 +56,7 @@ const Navbar = () => {
                             Login
                         </Nav.Link>
                         <Button
-                            variant='outline-danger'
+                            variant={isAgency ? 'danger' : 'outline-danger'}
                             onClick={handleButtonClick}
                             style={{ width: '180px' }}>
                             {isAgency ? 'For Establishments' : 'For Service Agencies'}

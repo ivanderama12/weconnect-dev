@@ -7,6 +7,7 @@ import SearchBar from '../SearchBar';
 import results from '../../results'
 import { useAuth } from '../../AuthContext'
 import Art from '../../images/art/LoginPageArt.svg'
+import { checkActionCode } from 'firebase/auth'
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -35,7 +36,7 @@ const Login = () => {
         if (!userFound) {
             setLoading(false)
             setError('User not found')
-        } else {
+        } else {        
             try {
                 await login(email, password)
                 isAgency ? history.push('/serviceagency/dashboard') : history.push('/dashboard')
@@ -99,6 +100,12 @@ const Login = () => {
                                 <div className='mt-2 d-flex justify-content-center'>
                                     <Link to='/forgotpassword' className='link-format red-font'>
                                         Forgot Password?
+                                    </Link>
+                                </div>
+
+                                <div className='mt-2 d-flex justify-content-center'>
+                                    <Link to='/register' className='link-format red-font'>
+                                       New User? Click here to Register
                                     </Link>
                                 </div>
                             </Card.Body>

@@ -19,10 +19,12 @@ const AgencyForm = () => {
     const email = currentUser.email
     const uid = currentUser.uid
     const imageRef = 'https://firebasestorage.googleapis.com/v0/b/weconnect-dev-de5dc.appspot.com/o/images%2Fprof-icon1%201.png?alt=media&token=3882b521-d138-479e-ab70-5d4aa3edae3c'
+    const date = new Date()
+    const expiry = date.setMonth(date.getMonth() + 1)
 
     function handleSubmit(e) {
-        setLoading(true)
         e.preventDefault()
+        setLoading(true)
         results.put('users/serviceagency/' + uid + '.json', {
             imageRef: imageRef,
             email: email,
@@ -30,13 +32,14 @@ const AgencyForm = () => {
             userTitle: title,
             companyName: company,
             contactNumber: number,
-            premiumExpiry: 30,
-            freeTrial: true
+            premiumExpiry: expiry,
+            accountStatus: "Free Trial"
         })
             .then(function () {
                 setLoading(false)
                 updateprofile(company, imageRef)
                 history.push('premium');
+                history.go(0)
             })
             .catch(function (error) {
                 setLoading(false)
